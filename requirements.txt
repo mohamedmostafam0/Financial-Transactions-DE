@@ -1,0 +1,14 @@
+apache-airflow==2.6.0       
+psycopg2-binary
+xgboost
+python-dotenv
+catboost
+pyspark
+pandas
+lightgbm  # Fixed typo (was lightgon)
+scikit-learn
+pyyaml
+boto3
+tqdm
+joblib  # Replaced tqdm-joblib (not a real package)
+imbalanced-learn  # Correct package name (was imblearn)
