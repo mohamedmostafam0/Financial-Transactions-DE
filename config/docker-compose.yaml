@@ -1,0 +1,421 @@
+# docker-compose.yaml
+version: "3.8"
+
+x-airflow-common: &airflow-common
+  image: airflow-finance:latest # Use a custom image name
+  build:
+    context: ./airflow # Specify context for Airflow image build
+    dockerfile: Dockerfile # Specify Dockerfile name
+  environment: &airflow-common-env # --- Airflow Core ---
+    AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
+    AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:-$(python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())")} # Generate key if not set
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth" # Simpler auth for demo
+
+    # --- Logging ---
+    AIRFLOW__LOGGING__LOGGING_LEVEL: INFO
+
+    # --- Snowflake Connection (Via Env Vars for dbt/hooks) ---
+    # DBT profile uses these:
+    DBT_SNOWFLAKE_ACCOUNT: ${SNOWFLAKE_ACCOUNT}
+    DBT_SNOWFLAKE_USER: ${SNOWFLAKE_USER}
+    DBT_SNOWFLAKE_PASSWORD: ${SNOWFLAKE_PASSWORD}
+    # DBT_SNOWFLAKE_PRIVATE_KEY_PATH: /path/to/key/in/container # If using keypair
+    # DBT_SNOWFLAKE_PRIVATE_KEY_PASSPHRASE: ${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
+    DBT_SNOWFLAKE_ROLE: ${SNOWFLAKE_ROLE}
+    DBT_SNOWFLAKE_DATABASE: ${SNOWFLAKE_DATABASE}
+    DBT_SNOWFLAKE_WAREHOUSE: ${SNOWFLAKE_WAREHOUSE}
+    DBT_SNOWFLAKE_SCHEMA: "DBT_PROD" # Default schema for dbt runs in prod-like env
+
+    # --- MinIO/S3 Connection (for boto3/S3Hook) ---
+    # Used by S3Hook implicitly if connection `minio_default` uses AWS credentials type
+    AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER} # Using MinIO root for simplicity
+    AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD}
+    # Note: S3Hook needs endpoint_url configured in the Airflow Connection extra field
+
+    # --- Other ---
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-} # For installing deps from requirements.txt in Dockerfile
+
+  volumes:
+    # Mount project directories into Airflow containers
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs # Mount logs directory
+    - ./plugins:/opt/airflow/plugins
+    - ./dbt:/opt/airflow/dbt # Mount dbt project
+    # - ./path/to/snowflake_private_key.p8:/opt/airflow/keys/snowflake_key.p8 # Example for key pair auth
+  user: "${AIRFLOW_UID:-50000}:0" # Set to host user's ID to avoid permission issues
+  depends_on: &airflow-common-depends-on
+    redis:
+      condition: service_healthy
+    postgres:
+      condition: service_healthy
+  networks:
+    - de-network
+
+services:
+  # --- Airflow Base Services ---
+  postgres:
+    image: postgres:13
+    container_name: postgres_airflow
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-airflow} # Use env var
+      POSTGRES_DB: airflow
+      # Add MLFlow DB user/pass if needed here or use init script
+      POSTGRES_MLFLOW_USER: mlflow
+      POSTGRES_MLFLOW_PASSWORD: ${MLFLOW_PASSWORD:-mlflow}
+      POSTGRES_MLFLOW_DB: mlflow_db
+    volumes:
+      - airflow-postgres-volume:/var/lib/postgresql/data
+      - ./scripts/init-airflow-db.sh:/docker-entrypoint-initdb.d/init-airflow-db.sh # Init script for Airflow DB
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow", "-d", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+    networks:
+      - de-network
+
+  redis:
+    image: redis:7.2-bookworm
+    container_name: redis_airflow
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: always
+    networks:
+      - de-network
+
+  # --- Airflow Components ---
+  airflow-init:
+    <<: *airflow-common
+    container_name: airflow_init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        # Function to check DB readiness
+        wait_for_db() {
+          echo "Waiting for PostgreSQL..."
+          while ! nc -z postgres 5432; do
+            sleep 1
+          done
+          echo "PostgreSQL is up!"
+        }
+        # Check prerequisites (like user ID, resources - optional but good)
+        # ... (copy resource checks from original if desired) ...
+        # Initialize DB (only if needed, often handled by webserver/scheduler on first run)
+        # wait_for_db # Ensure DB is up before trying to init
+        # airflow db init # May not be needed if webserver/scheduler handle it
+        # Create Airflow user
+        airflow users create --username ${AIRFLOW_USER:-admin} --password ${AIRFLOW_PASSWORD:-admin} --firstname Admin --lastname User --role Admin --email admin@example.com || true # Ignore error if user exists
+    environment:
+      <<: *airflow-common-env
+      # Override env vars needed only for init
+      _AIRFLOW_DB_UPGRADE: "true" # Auto-run DB migrations
+      _AIRFLOW_WWW_USER_CREATE: "false" # We create user manually above
+    user: "0:0" # Run init as root to have permissions
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: airflow_webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init: # Wait for init to potentially create user/run migrations
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: airflow_scheduler
+    command: scheduler
+    healthcheck: # Needs http server enabled for scheduler health check
+      test: ["CMD", "curl", "--fail", "http://localhost:8793/health"] # Default scheduler health port
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-worker:
+    <<: *airflow-common
+    container_name: airflow_worker # Can scale this
+    command: celery worker
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - 'celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"'
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    environment:
+      <<: *airflow-common-env
+      # Required for proper signal handling with celery workers
+      DUMB_INIT_SETSID: "0"
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+      airflow-scheduler: # Ensure scheduler is healthy before worker starts
+        condition: service_healthy
+    # deploy: # Example scaling
+    #   mode: replicated
+    #   replicas: 2
+
+  airflow-triggerer:
+    <<: *airflow-common
+    container_name: airflow_triggerer
+    command: triggerer
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  # Optional: Flower UI for Celery monitoring
+  # flower:
+  #   <<: *airflow-common
+  #   container_name: airflow_flower
+  #   command: celery flower
+  #   ports:
+  #     - "5555:5555"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "--fail", "http://localhost:5555/"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+  #     start_period: 30s
+  #   restart: always
+  #   depends_on:
+  #     <<: *airflow-common-depends-on
+  #     airflow-init:
+  #       condition: service_completed_successfully
+
+  # --- Kafka Cluster (Using Confluent cp-kafka) ---
+  broker:
+    image: confluentinc/cp-kafka:7.4.0 # Use a specific version
+    container_name: broker
+    hostname: broker
+    ports:
+      - "9092:9092" # External access
+      # - "9101:9101" # JMX Metrics Port
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,INTERNAL:PLAINTEXT"
+      # Listeners: INTERNAL for broker-to-broker, PLAINTEXT for client access inside docker network, :9092 for access outside docker
+      KAFKA_LISTENERS: "INTERNAL://broker:29092,PLAINTEXT://broker:9092,CONTROLLER://broker:29093"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://broker:9092" # How clients connect (use broker name within docker network)
+      KAFKA_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+      KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@broker:29093"
+      KAFKA_PROCESS_ROLES: "broker,controller" # KRaft mode
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      # KAFKA_JMX_PORT: 9101
+      # KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_LOG_DIRS: "/var/lib/kafka/data"
+      # CLUSTER_ID: You should generate a unique ID using: docker run --rm confluentinc/cp-kafka:7.4.0 kafka-storage random-uuid
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID:-MkU3OEVBNTcwNTJENDM2Qk} # Provide via .env or use default
+      KAFKA_CREATE_TOPICS: "transactions:1:1" # Auto-create topic: name:partitions:replicationFactor
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test:
+        ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s # Give Kafka time to start
+    networks:
+      - de-network
+
+  # --- Kafka Connect ---
+  # IMPORTANT: Needs Snowflake Connector installed! Build a custom image.
+  connect:
+    build:
+      context: ./kafka-connect # Directory with Dockerfile for Connect
+      dockerfile: Dockerfile
+    container_name: connect
+    hostname: connect
+    depends_on:
+      broker:
+        condition: service_healthy
+      # schema-registry: # Add if using Schema Registry
+      #   condition: service_healthy
+    ports:
+      - "8083:8083" # Connect REST API
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: "broker:9092" # Connect to Kafka broker within the network
+      CONNECT_REST_ADVERTISED_HOST_NAME: connect # How clients access the REST API
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: compose-connect-group
+      CONNECT_CONFIG_STORAGE_TOPIC: docker-connect-configs
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_FLUSH_INTERVAL_MS: 10000
+      CONNECT_OFFSET_STORAGE_TOPIC: docker-connect-offsets
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      # --- Converters ---
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.storage.StringConverter
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false" # For plain JSON
+      # If using Schema Registry:
+      # CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      # CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+
+      # --- Plugin Path ---
+      # Ensure this path includes the Snowflake connector JARs
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/usr/share/confluent-hub-components,/etc/kafka-connect/jars"
+
+      # --- Snowflake Credentials (Passed as Env Vars to Connector Config) ---
+      SNOWFLAKE_PASSWORD: ${SNOWFLAKE_PASSWORD}
+      # SNOWFLAKE_PRIVATE_KEY: ${SNOWFLAKE_PRIVATE_KEY_CONTENT} # Pass key content if using key pair
+      # SNOWFLAKE_PRIVATE_KEY_PASSPHRASE: ${SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}
+
+    volumes:
+      # Mount connector JARs if not baked into the image
+      - ./jars/snowflake-kafka-connector*.jar:/etc/kafka-connect/jars/snowflake-kafka-connector.jar
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8083/connectors"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s # Give connect time to start and load plugins
+    networks:
+      - de-network
+
+  # --- Kafka Producer Service ---
+  producer:
+    build:
+      context: ./producer
+      dockerfile: Dockerfile
+    container_name: producer
+    env_file: .env # Load environment variables from .env file
+    environment:
+      # Override specific vars if needed, otherwise rely on .env
+      KAFKA_BOOTSTRAP_SERVERS: "broker:9092" # Ensure it uses the internal broker hostname
+      KAFKA_TOPIC: "transactions"
+      PRODUCER_INTERVAL: "0.5" # Interval between messages
+    depends_on:
+      broker:
+        condition: service_healthy
+    # deploy: # Example scaling producer
+    #   replicas: 2
+    #   resources:
+    #     limits:
+    #       cpus: "0.5"
+    #       memory: 512M
+    healthcheck: # Uses the health_check method in main.py
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "from main import TransactionProducer; producer = TransactionProducer(); exit(0) if producer.health_check() else exit(1)",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - de-network
+
+  # --- MinIO Object Storage ---
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin} # Use .env or default
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "${MINIO_API_PORT:-9000}:9000" # API Port
+      - "${MINIO_CONSOLE_PORT:-9001}:9001" # Console Port
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - de-network
+
+  # --- MinIO Client (for initial bucket creation) ---
+  mc:
+    image: minio/mc
+    container_name: mc
+    depends_on:
+      minio:
+        condition: service_healthy # Wait for minio to be healthy
+    environment:
+      # Pass credentials needed by mc
+      MC_HOST_minio: http://${MINIO_ROOT_USER}:${MINIO_ROOT_PASSWORD}@minio:9000
+    entrypoint: >
+      /bin/sh -c "
+      echo 'Waiting for MinIO...' &&
+      until mc ping minio --quiet; do sleep 1; done &&
+      echo 'MinIO is up. Creating buckets...' &&
+      mc mb minio/${MINIO_BUCKET_NAME:-transaction-exports} --ignore-existing &&
+      echo 'Buckets created (or already exist).' &&
+      exit 0;
+      "
+    networks:
+      - de-network
+
+# --- Volumes ---
+volumes:
+  kafka-data:
+  airflow-postgres-volume:
+  minio-data:
+  # Add other volumes if needed (e.g., logs, dbt target)
+  logs: # Airflow logs volume defined in service, declared here
+
+# --- Network ---
+networks:
+  de-network:
+    driver: bridge

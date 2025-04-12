@@ -1,0 +1,44 @@
+// snowflake_connector.json
+{
+    "name": "snowflake-sink-transactions",
+    "config": {
+      "connector.class": "com.snowflake.kafka.connector.SnowflakeSinkConnector",
+      "tasks.max": "2", // Adjust based on topic partitions and load
+      "topics": "transactions", // Kafka topic to consume from
+      "snowflake.url.name": "<YOUR_SNOWFLAKE_ACCOUNT_URL>", // e.g., myorg-myaccount.snowflakecomputing.com
+      "snowflake.user.name": "<YOUR_SNOWFLAKE_USER>",
+      "snowflake.user.password": "${env:SNOWFLAKE_PASSWORD}", // Use env var for password
+      // OR Key Pair Auth (Recommended):
+      // "snowflake.private.key": "${env:SNOWFLAKE_PRIVATE_KEY}",
+      // "snowflake.private.key.passphrase": "${env:SNOWFLAKE_PRIVATE_KEY_PASSPHRASE}", // Optional
+      "snowflake.database.name": "<YOUR_SNOWFLAKE_DATABASE>",
+      "snowflake.schema.name": "RAW", // Schema for raw data tables
+      "snowflake.role.name": "<YOUR_SNOWFLAKE_ROLE>", // Role connector should use
+      "snowflake.warehouse.name": "<YOUR_SNOWFLAKE_WAREHOUSE>", // Warehouse for loading
+  
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "org.apache.kafka.connect.json.JsonConverter", // Assuming producer sends plain JSON
+      "value.converter.schemas.enable": "false", // Set to true if using Schema Registry with JSON Schema
+  
+      "snowflake.topic2table.map": "transactions:RAW_TRANSACTIONS", // Map topic to table name
+      "snowflake.sink.task.partition.range.enabled": "true", // Distribute partitions across tasks
+  
+      // Error Handling
+      "errors.tolerance": "none", // Fail task on error ('all' logs and continues)
+      "errors.log.enable": "true",
+      "errors.log.include.messages": "true",
+  
+      // Buffer settings (adjust based on volume and latency needs)
+      "buffer.count.records": "10000", // Max records per buffer file before flush
+      "buffer.size.bytes": "50000000", // 50MB max buffer file size before flush
+      "buffer.flush.time.seconds": "60", // Max time before flush regardless of size/count
+  
+      // Snowflake specific behaviors
+      "snowflake.metadata.createtime": "false", // Avoid adding metadata columns if not needed
+      "snowflake.metadata.topic": "false",
+      "snowflake.metadata.offset.and.partition": "false",
+      "snowflake.metadata.all": "false", // Control specific metadata columns as needed
+  
+      "behavior.on.null.values": "IGNORE" // What to do with Kafka tombstone messages
+    }
+  }

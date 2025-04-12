@@ -1,0 +1,49 @@
+# dbt/dbt_project.yml
+name: 'finance_dbt'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'finance_dbt_profile' # Matches the profile name in profiles.yml
+
+# These configurations specify where dbt should look for different types of files.
+# Path is relative to the dbt project directory.
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Where dbt should compile models to locally
+target-path: "target"
+# Where dbt should write logs and artifacts
+clean-targets: # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+  - "logs" # Add logs directory
+
+# Model configuration
+models:
+  finance_dbt:
+    # Apply tags and materializations to models in specific subdirectories
+    staging:
+      +materialized: view # Staging models as views by default
+      +schema: staging # Default schema for staging models
+      +tags: ['staging']
+    marts:
+      +materialized: table # Mart models as tables by default
+      +schema: analytics # Default schema for mart models
+      +tags: ['mart']
+      finance: # Specific mart configurations can go here if needed
+        +tags: ['finance']
+
+# Configure tests (including Great Expectations if integrated via dbt-expectations)
+tests:
+  finance_dbt:
+    +severity: warn # Default severity for tests
+
+# Seed configuration (for loading CSV data if needed)
+seeds:
+  finance_dbt:
+    +schema: raw_seeds # Example schema for seed tables

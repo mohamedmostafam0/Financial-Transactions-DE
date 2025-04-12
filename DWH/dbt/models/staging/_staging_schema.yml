@@ -1,0 +1,54 @@
+# dbt/models/staging/_staging_schema.yml
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Staged transaction data: Cleaned, renamed, and typed from raw source. One record per transaction."
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for the transaction."
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Identifier for the user making the transaction."
+        tests:
+          - not_null
+          - relationships: # Example FK test if you have a stg_users table
+              to: ref('stg_users') # Assumes a users staging table exists
+              field: user_id
+              severity: warn # Don't fail build if user doesn't exist yet
+      - name: amount
+        description: "Transaction amount in the specified currency."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between: # Requires dbt-expectations package
+              min_value: 0
+              # max_value: 10000 # Define sensible max if applicable
+              strictly: false
+      - name: currency
+        description: "Currency code (e.g., USD)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['USD', 'EUR', 'GBP'] # List expected currencies
+      - name: merchant
+        description: "Merchant associated with the transaction."
+        tests:
+          - not_null
+      - name: transaction_timestamp_utc
+        description: "Timestamp of the transaction in UTC."
+        tests:
+          - not_null
+      - name: location_code
+        description: "Two-letter country code for the transaction location."
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_value_lengths_to_equal: # Requires dbt-expectations
+              value: 2
+      - name: is_fraud
+        description: "Boolean flag indicating if the transaction is marked as fraudulent."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [ true, false ] # Test for boolean values after cast
