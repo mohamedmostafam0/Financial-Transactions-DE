@@ -1,7 +1,6 @@
-FROM python:3.9
+FROM python:3.9-slim
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    PYTHONUNBUFFERED=1 \
+ENV PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=utf-8
 
 WORKDIR /app
@@ -19,9 +18,25 @@ RUN apt-get update && \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+# Copy requirements first for layer caching
+COPY ./src/producer/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+
+# Copy producer code and supervisord config
+# Ensure these paths are correct relative to the build context (project root)
+COPY ./src/producer/TransactionProducer.py /app/TransactionProducer.py
+COPY ./src/producer/user_producer.py /app/user_producer.py
+COPY ./src/producer/merchant_producer.py /app/merchant_producer.py
+COPY ./src/shared/consumer_cache.py /app/src/shared/consumer_cache.py 
+COPY ./src/producer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Copy the __init__.py files if they exist and are needed for imports
+COPY ./src/producer/__init__.py /app/src/producer/__init__.py
+COPY ./src/shared/__init__.py /app/src/shared/__init__.py
+
 
 COPY . .
 
-ENTRYPOINT ["python3", "main.py"]
+# Run supervisord
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

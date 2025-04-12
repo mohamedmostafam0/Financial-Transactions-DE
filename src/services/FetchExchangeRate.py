@@ -18,7 +18,7 @@ MINIO_CONFIG = {
 }
 
 
-def fetch_exchange_rates(app_id: str, base_currency: str = "USD"):
+def fetch_exchange_rates(app_id: str, base_currency: str):
     url = f"https://openexchangerates.org/api/latest.json?app_id={app_id}&base={base_currency}"
     response = requests.get(url)
 

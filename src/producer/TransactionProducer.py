@@ -9,10 +9,18 @@ from datetime import datetime, timezone
 from confluent_kafka import Producer, KafkaException
 import logging
 from faker import Faker
-from jsonschema import ValidationError, validate, FormatChecker
 from dotenv import load_dotenv # Keep for local testing if needed, but rely on env_file in Docker
+from pathlib import Path
+from jsonschema import ValidationError, validate, FormatChecker
 from src.shared.consumer_cache import CacheConsumer
 from src.producer.merchant_producer import MERCHANTS # Assuming this is a list of dictionaries with merchant data
+
+GLOBAL_ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+# Load .env only if running locally without Docker's env_file
+if not os.getenv('KAFKA_BOOTSTRAP_SERVERS'):
+    load_dotenv(dotenv_path=GLOBAL_ENV_PATH)
+
+KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS')
 
 cache = CacheConsumer(KAFKA_BOOTSTRAP_SERVERS)
 logging.basicConfig(
@@ -21,9 +29,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Load .env only if running locally without Docker's env_file
-if not os.getenv('KAFKA_BOOTSTRAP_SERVERS'):
-    load_dotenv() # Assumes .env is in the same directory or parent
 
 fake = Faker()
 

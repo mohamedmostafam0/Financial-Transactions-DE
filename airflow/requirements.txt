@@ -1,0 +1,17 @@
+# airflow/requirements.txt
+# Add Airflow providers and other dependencies needed by your DAGs
+
+# --- Providers ---
+apache-airflow-providers-snowflake>=5.0.0 # Use appropriate version
+apache-airflow-providers-amazon>=8.5.0 # For S3Hook (MinIO)
+apache-airflow-providers-common-sql
+
+# --- dbt ---
+dbt-core~=1.7.0 # Choose dbt version compatible with adapter
+dbt-snowflake~=1.7.0 # Use matching adapter version
+
+# --- Other Libraries ---
+boto3>=1.26.0 # For MinIO/S3 interaction
+pendulum # Often useful for DAG scheduling/dates
+requests # If DAGs make HTTP requests (e.g., for exchange rates)
+# dbt-expectations # If using this package for tests in schema.yml
