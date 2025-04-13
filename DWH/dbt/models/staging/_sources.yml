@@ -7,12 +7,27 @@ sources:
     schema: RAW # Schema where Kafka Connect lands data
     tables:
       - name: RAW_TRANSACTIONS # Table created by Snowflake Connector
-        description: "Raw transaction data ingested from Kafka via Snowflake Connector."
-        # Optionally define columns and tests on the raw source data
+        description: "Raw transaction data ingested from minIO."
         columns:
           - name: RECORD_CONTENT # Assuming connector loads JSON into a VARIANT column
             description: "Raw JSON payload from Kafka."
             tests:
-              - not_null # Ensure the variant column itself isn't null
+              - not_null 
           - name: RECORD_METADATA
             description: "Metadata added by Snowflake Connector."
+
+      - name: RAW_FRAUDS
+        description: "Fraud Blacklist data ingested from minIO."
+        columns:
+          - name: RECORD_CONTENT
+            description: "Raw JSON payload from minIO."
+            tests:
+              - not_null
+
+      - name: RAW_EXCHANGE
+        description: "Exchange Rate data ingested from minIO."
+        columns:
+          - name: RECORD_CONTENT
+            description: "Raw JSON payload from minIO."
+            tests:
+              - not_null

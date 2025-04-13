@@ -1,6 +1,3 @@
--- dbt/models/staging/stg_transactions.sql
--- Renames columns, casts types, basic cleaning from the raw Kafka source table
-
 with source as (
     select
         record_content:transaction_id::string as transaction_id,
@@ -54,4 +51,4 @@ renamed as (
         and longitude between -180 and 180
 )
 
-select * from renamed
+select * from renamed_casted

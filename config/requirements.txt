@@ -12,3 +12,4 @@ boto3
 tqdm
 joblib  # Replaced tqdm-joblib (not a real package)
 imbalanced-learn  # Correct package name (was imblearn)
+snowflake-connector-python
