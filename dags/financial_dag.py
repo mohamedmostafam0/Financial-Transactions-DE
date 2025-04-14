@@ -34,21 +34,7 @@ task_merchant_producer = PythonOperator(
 task_user_producer = PythonOperator(
     task_id='user_producer',
     python_callable=run_python_script,
-    op_args=['/opt/airflow/src/producer/merchant_producer.py'],
-    dag=dag,
-)
-
-task_consumer_cache = PythonOperator(
-    task_id='consumer_cache',
-    python_callable=run_python_script,
-    op_args=['/opt/airflow/src/shared/consumer_cache.py'],
-    dag=dag,
-)
-
-task_transaction_producer = PythonOperator(
-    task_id='transaction_producer',
-    python_callable=run_python_script,
-    op_args=['/opt/airflow/src/producer/TransactionProducer.py'],
+    op_args=['/opt/airflow/src/producer/user_producer.py'],
     dag=dag,
 )
 
@@ -58,6 +44,13 @@ task_fraud_blacklist = PythonOperator(
     op_args=['/opt/airflow/src/consumer/FraudBlacklist.py'],
     dag=dag,
 )
+task_transaction_producer = PythonOperator(
+    task_id='transaction_producer',
+    python_callable=run_python_script,
+    op_args=['/opt/airflow/src/producer/TransactionProducer.py'],
+    dag=dag,
+)
+
 
 # Define task for FetchExchangeRate.py (runs once every 24 hours)
 task_fetch_exchange_rate = PythonOperator(
@@ -76,12 +69,12 @@ minIO_to_snowflake = PythonOperator(
 )
 
 # Set the schedule for tasks running every minute
-for task in [task_merchant_producer, task_user_producer, task_consumer_cache, task_transaction_producer, task_fraud_blacklist, minIO_to_snowflake]:
+for task in [task_merchant_producer, task_user_producer, task_transaction_producer, task_fraud_blacklist, minIO_to_snowflake]:
     task.schedule_interval = timedelta(minutes=1)
 
 # Set the schedule for FetchExchangeRate.py to run once every 24 hours
 task_fetch_exchange_rate.schedule_interval = timedelta(days=1)
 
 # Set task dependencies if needed (e.g., sequential or parallel execution)
-task_merchant_producer >> task_user_producer >> task_consumer_cache >> task_transaction_producer >> task_fraud_blacklist >> minIO_to_snowflake
+task_merchant_producer >> task_user_producer >> task_transaction_producer >> task_fraud_blacklist >> minIO_to_snowflake
 task_fetch_exchange_rate 

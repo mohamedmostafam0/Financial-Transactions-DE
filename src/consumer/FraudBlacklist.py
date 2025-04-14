@@ -6,7 +6,7 @@ import random
 import json
 import os
 import logging
-import time
+from time import datetime, timezone
 import sys
 import signal # For graceful shutdown
 from faker import Faker
@@ -52,7 +52,7 @@ def create_kafka_producer():
     }
     if KAFKA_USERNAME and KAFKA_PASSWORD:
         producer_config.update({
-            'security.protocol': 'SASL_PLAINTEXT', # Or SASL_SSL
+            'security.protocol': 'SASL_SSL', # Or SASL_SSL
             'sasl.mechanism': 'PLAIN',
             'sasl.username': KAFKA_USERNAME,
             'sasl.password': KAFKA_PASSWORD
