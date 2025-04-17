@@ -1,5 +1,5 @@
 # Use the same base image version as specified in docker-compose.yaml
-# ARG AIRFLOW_VERSION=2.10.5
+ARG AIRFLOW_VERSION=2.10.5
 FROM apache/airflow:${AIRFLOW_VERSION}-python3.9
 
 USER root
@@ -17,7 +17,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1 &&
 
 # Switch to airflow user for Python package installation
 USER airflow
-COPY requirements.txt /tmp/requirements.txt
+COPY airflow/requirements.txt /tmp/requirements.txt
 RUN python3.9 -m pip install --upgrade pip && \
     python3.9 -m pip install -r /tmp/requirements.txt
 RUN echo "tany part"

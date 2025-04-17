@@ -15,7 +15,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-airflow_pw}@postgres/${POSTGRES_DB:-airflow}
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     # Fernet key MUST be set in .env or generated dynamically
-    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:?AIRFLOW_FERNET_KEY must be set in .env file}
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
     AIRFLOW__CORE__LOAD_EXAMPLES: "false"
     AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth"
@@ -249,7 +249,7 @@ services:
     depends_on:
       <<: *airflow-common-depends-on
       airflow-init:
-        condition: service_completed_successfullyy
+        condition: service_completed_successfully
     networks:
       - de-network
 
@@ -272,8 +272,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-      networks:
-        - de-network
+    networks:
+      - de-network
 
   # --- Kafka Cluster (Using Confluent cp-kafka) ---
   broker:
@@ -389,7 +389,6 @@ services:
       - broker
       - schema-registry
       - connect
-      - ksqldb-server
     ports:
       - "9021:9021"
     environment:
