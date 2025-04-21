@@ -1,5 +1,5 @@
 # Use the same base image version as specified in docker-compose.yaml
-# ARG AIRFLOW_VERSION=2.10.5
+ARG AIRFLOW_VERSION=2.10.5
 FROM apache/airflow:${AIRFLOW_VERSION}-python3.9
 
 USER root

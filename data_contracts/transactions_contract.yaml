@@ -1,0 +1,88 @@
+name: transactions
+description: >
+  Stream of enriched financial transactions produced in real-time, including user, merchant, location, and card details.
+version: 1.0.0
+
+topic: transactions
+schema_type: JSON
+schema:
+  type: object
+  required:
+    - transaction_id
+    - user_id
+    - amount
+    - currency
+    - merchant_id
+    - merchant_name
+    - merchant_category
+    - card_type
+    - timestamp
+    - location_country
+    - location_city
+    - latitude
+    - longitude
+  properties:
+    transaction_id:
+      type: string
+      format: uuid
+      description: Unique ID of the transaction
+    user_id:
+      type: integer
+      minimum: 1
+      description: ID of the user who made the transaction
+    amount:
+      type: number
+      minimum: 0.01
+      description: Transaction amount in the original currency
+    currency:
+      type: string
+      pattern: "^[A-Z]{3}$"
+      description: ISO currency code (e.g., USD, EUR)
+    merchant_id:
+      type: string
+      format: uuid
+      description: Unique ID of the merchant
+    merchant_name:
+      type: string
+      description: Name of the merchant
+    merchant_category:
+      type: string
+      enum: [Retail, Electronics, Travel, Dining, Services, Health, Entertainment, Education, Finance, Real Estate, Automotive]
+      description: Category of the merchant
+    card_type:
+      type: string
+      enum: [Visa, MasterCard, Amex, Discover, Other]
+      description: Type of card used
+    timestamp:
+      type: string
+      format: date-time
+      description: ISO 8601 timestamp of the transaction
+    location_country:
+      type: string
+      pattern: "^[A-Z]{2}$"
+      description: Country code (ISO 3166-1 alpha-2)
+    location_city:
+      type: string
+      description: City where the transaction occurred
+    latitude:
+      type: number
+      minimum: -90
+      maximum: 90
+      description: Latitude of transaction location
+    longitude:
+      type: number
+      minimum: -180
+      maximum: 180
+      description: Longitude of transaction location
+
+quality_expectations:
+  - transaction_id must be unique per message
+  - amount must be > 0
+  - timestamp must be within the last 48 hours
+  - merchant_category and card_type must match enum values
+
+delivery:
+  mode: kafka-stream
+  frequency: real-time
+  partition_key: transaction_id
+

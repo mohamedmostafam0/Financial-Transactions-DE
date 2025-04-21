@@ -7,7 +7,7 @@ import sys
 from datetime import datetime, timezone # Use timezone-aware datetime
 from confluent_kafka import Producer
 from confluent_kafka.admin import AdminClient, NewTopic
-from dotenv import load_dotenv
+from src.config import KAFKA, EXCHANGE_RATE_API
 
 
 logging.basicConfig(
@@ -16,18 +16,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-load_dotenv() # Load from .env file in the project root or current dir
 
+KAFKA_BOOTSTRAP_SERVERS = KAFKA["BOOTSTRAP_SERVERS"]
+KAFKA_TOPIC = KAFKA["TOPICS"]["exchange_rates"]
+KAFKA_USERNAME = KAFKA["USERNAME"]
+KAFKA_PASSWORD = KAFKA["PASSWORD"]
 
-
-# === Configuration ===
-APP_ID = "2f078a1136f140958b5794e96fe04300"  # Replace with your Open Exchange Rates API key
-BASE_CURRENCY = "USD"
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
-KAFKA_TOPIC = os.getenv("KAFKA_EXCHANGE_RATES_TOPIC", "exchange_rates")
-# Optional Kafka SASL config
-KAFKA_USERNAME = os.getenv('KAFKA_USERNAME')
-KAFKA_PASSWORD = os.getenv('KAFKA_PASSWORD')
+APP_ID = EXCHANGE_RATE_API["APP_ID"]
+BASE_CURRENCY = EXCHANGE_RATE_API["BASE_CURRENCY"]
 
 # --- Kafka Producer Setup ---
 def create_kafka_producer():
@@ -39,7 +35,7 @@ def create_kafka_producer():
     }
     if KAFKA_USERNAME and KAFKA_PASSWORD:
         producer_config.update({
-            'security.protocol': 'SASL_PLAINTEXT', # Or SASL_SSL
+            'security.protocol': 'SASL_SSL', # Or SASL_SSL
             'sasl.mechanism': 'PLAIN',
             'sasl.username': KAFKA_USERNAME,
             'sasl.password': KAFKA_PASSWORD
@@ -67,7 +63,7 @@ def create_topic_if_not_exists(bootstrap_servers, topic_name):
     admin_config = {'bootstrap.servers': bootstrap_servers}
     if KAFKA_USERNAME and KAFKA_PASSWORD:
          admin_config.update({
-            'security.protocol': 'SASL_PLAINTEXT', # Or SASL_SSL
+            'security.protocol': 'SASL_SSL', # Or SASL_SSL
             'sasl.mechanism': 'PLAIN',
             'sasl.username': KAFKA_USERNAME,
             'sasl.password': KAFKA_PASSWORD

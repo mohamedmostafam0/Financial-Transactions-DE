@@ -1,0 +1,33 @@
+name: merchants
+description: Stream of synthetic merchant profiles.
+version: 1.0.0
+
+topic: merchants
+schema_type: JSON
+schema:
+  type: object
+  required:
+    - merchant_id
+    - merchant_name
+    - merchant_category
+  properties:
+    merchant_id:
+      type: string
+      format: uuid
+      description: Unique UUID for the merchant
+    merchant_name:
+      type: string
+      description: Merchant or company name
+    merchant_category:
+      type: string
+      enum: ["Retail", "Electronics", "Travel", "Dining", "Services", "Health", "Entertainment", "Education", "Finance", "Real Estate", "Automotive"]
+      description: Industry or sector the merchant belongs to
+
+quality_expectations:
+  - merchant_id must be a UUID
+  - category must match predefined list
+
+delivery:
+  mode: kafka-stream
+  frequency: per-second
+  partition_key: merchant_id

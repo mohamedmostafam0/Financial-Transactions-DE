@@ -11,17 +11,16 @@ from datetime import datetime, timezone
 from faker import Faker
 from confluent_kafka import Producer, Consumer, KafkaException
 from jsonschema import validate, ValidationError, FormatChecker
+from src.config import KAFKA
 
-# --- Config ---
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS")
-KAFKA_TRANSACTIONS_TOPIC = os.getenv("KAFKA_TRANSACTIONS_TOPIC", "transactions")
-KAFKA_USERS_TOPIC = os.getenv("KAFKA_USERS_TOPIC", "users")
-KAFKA_MERCHANTS_TOPIC = os.getenv("KAFKA_MERCHANTS_TOPIC", "merchants")
-CONSUMER_GROUP_ID = os.getenv("TRANSACTION_PRODUCER_CONSUMER_GROUP", "transaction-producer-enrichment-group")
-PRODUCER_INTERVAL = float(os.getenv("PRODUCER_INTERVAL", 0.5))
-
-KAFKA_USERNAME = os.getenv("KAFKA_USERNAME")
-KAFKA_PASSWORD = os.getenv("KAFKA_PASSWORD")
+KAFKA_BOOTSTRAP_SERVERS = KAFKA["BOOTSTRAP_SERVERS"]
+KAFKA_TRANSACTIONS_TOPIC = KAFKA["TOPICS"]["transactions"]
+KAFKA_USERS_TOPIC = KAFKA["TOPICS"]["users"]
+KAFKA_MERCHANTS_TOPIC = KAFKA["TOPICS"]["merchants"]
+CONSUMER_GROUP_ID = KAFKA["GROUPS"]["transaction_producer"]
+KAFKA_USERNAME = KAFKA["USERNAME"]
+KAFKA_PASSWORD = KAFKA["PASSWORD"]
+PRODUCER_INTERVAL = KAFKA["PRODUCER_INTERVAL"]
 
 MERCHANT_CATEGORIES = ["Retail", "Electronics", "Travel", "Dining", "Services", "Health", "Entertainment", "Education", "Finance", "Real Estate", "Automotive"]
 ISO_CURRENCY_CODES = ["USD", "EUR", "GBP", "JPY", "CAD", "AUD", "CHF", "INR", "CNY", "ZAR", "AED"]
@@ -107,7 +106,7 @@ class TransactionProducer:
             logger.warning(f"Validation failed: {e.message}")
             return False
 
-    def _delivery_report(self, err, msg):
+    def delivery_report(self, err, msg):
         if err is not None:
             logger.error(f"Delivery failed for key {msg.key()}: {err}")
         else:
@@ -150,7 +149,7 @@ class TransactionProducer:
         txn = {
             "transaction_id": fake.uuid4(),
             "user_id": self.latest_user["user_id"],
-            "amount": round(random.uniform(5, 500), 2),
+            "amount": float(round(random.uniform(5, 5000), 2)),
             "currency": random.choice(ISO_CURRENCY_CODES),
             "merchant_id": self.latest_merchant["merchant_id"],
             "merchant_name": self.latest_merchant["merchant_name"],
@@ -159,8 +158,8 @@ class TransactionProducer:
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "location_country": fake.country_code(),
             "location_city": fake.city(),
-            "latitude": fake.latitude(),
-            "longitude": fake.longitude()
+            "latitude": float(fake.latitude()),
+            "longitude": float(fake.longitude())
         }
         return txn if self._validate_transaction(txn) else None
 

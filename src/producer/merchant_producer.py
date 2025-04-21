@@ -6,14 +6,37 @@ import uuid
 import random
 from faker import Faker
 from confluent_kafka import Producer
-
+from src.config import KAFKA
 fake = Faker()
 
 CATEGORIES = ["Retail", "Electronics", "Travel", "Dining", "Services", "Health", "Entertainment", "Education", "Finance", "Real Estate", "Automotive"]
 
-producer = Producer({
-    'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
-})
+# Extract config values
+KAFKA_BOOTSTRAP_SERVERS = KAFKA["BOOTSTRAP_SERVERS"]
+KAFKA_USERNAME = KAFKA["USERNAME"]
+KAFKA_PASSWORD = KAFKA["PASSWORD"]
+KAFKA_USERS_TOPIC = KAFKA["TOPICS"]["users"]
+PRODUCER_INTERVAL = KAFKA.get("PRODUCER_INTERVAL", 1)
+
+# Build Kafka producer config
+producer_config = {
+    'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS,
+    'client.id': 'merchant-producer',
+    'compression.type': 'gzip',
+    'linger.ms': 100,
+}
+
+# Add secure settings if using Confluent Cloud
+if KAFKA_USERNAME and KAFKA_PASSWORD:
+    producer_config.update({
+        'security.protocol': 'SASL_SSL',
+        'sasl.mechanism': 'PLAIN',
+        'sasl.username': KAFKA_USERNAME,
+        'sasl.password': KAFKA_PASSWORD,
+    })
+
+# Initialize Kafka Producer
+producer = Producer(producer_config)
 
 def generate_merchant():
     return {

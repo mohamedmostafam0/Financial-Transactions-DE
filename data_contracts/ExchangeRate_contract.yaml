@@ -1,0 +1,50 @@
+name: exchange_rates
+description: Stream of currency exchange rate updates fetched from Open Exchange Rates API.
+version: 1.0.0
+
+topic: exchange_rates
+schema_type: JSON
+schema:
+  type: object
+  required:
+    - base_currency
+    - target_currency
+    - rate
+    - api_timestamp_unix
+    - api_timestamp_iso_utc
+    - fetch_timestamp_iso_utc
+  properties:
+    base_currency:
+      type: string
+      pattern: "^[A-Z]{3}$"
+      description: ISO 4217 currency code used as base
+    target_currency:
+      type: string
+      pattern: "^[A-Z]{3}$"
+      description: ISO 4217 currency to convert into
+    rate:
+      type: number
+      minimum: 0
+      description: Conversion rate from base to target
+    api_timestamp_unix:
+      type: integer
+      description: UNIX timestamp from the API
+    api_timestamp_iso_utc:
+      type: string
+      format: date-time
+      description: ISO timestamp of API data
+    fetch_timestamp_iso_utc:
+      type: string
+      format: date-time
+      description: Time this message was fetched and published
+
+quality_expectations:
+  - rate must be >= 0
+  - currency codes must be 3-letter ISO codes
+  - timestamps must be in ISO format and not older than 24h
+
+delivery:
+  mode: batch
+  frequency: daily
+  partition_key: base_currency
+

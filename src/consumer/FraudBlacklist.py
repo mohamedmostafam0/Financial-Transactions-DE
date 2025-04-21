@@ -6,13 +6,13 @@ import random
 import json
 import os
 import logging
-from time import datetime, timezone
+from datetime import datetime, timezone
 import sys
 import signal # For graceful shutdown
 from faker import Faker
 from confluent_kafka import Producer, Consumer, KafkaError, KafkaException
 from confluent_kafka.admin import AdminClient, NewTopic
-from dotenv import load_dotenv
+from src.config import KAFKA, BLACKLIST_PROBABILITY
 
 # --- Setup Logging ---
 logging.basicConfig(
@@ -21,24 +21,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# --- Load Environment Variables ---
-load_dotenv()
 
-# --- Configuration ---
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
-# Input Topics
-KAFKA_USERS_TOPIC = os.getenv("KAFKA_USERS_TOPIC", "users")
-KAFKA_MERCHANTS_TOPIC = os.getenv("KAFKA_MERCHANTS_TOPIC", "merchants")
-# Output Topic
-KAFKA_BLACKLIST_TOPIC = os.getenv("KAFKA_BLACKLIST_TOPIC", "fraud_blacklist")
-# Consumer Group ID
-CONSUMER_GROUP_ID = os.getenv("BLACKLIST_CONSUMER_GROUP", "fraud-blacklist-processor-group")
-# Blacklist Probability (e.g., 0.01 = 1% chance)
-BLACKLIST_PROBABILITY = float(os.getenv("BLACKLIST_PROBABILITY", 0.01))
-
-# Optional Kafka SASL config (ensure these are set if needed)
-KAFKA_USERNAME = os.getenv('KAFKA_USERNAME')
-KAFKA_PASSWORD = os.getenv('KAFKA_PASSWORD')
+KAFKA_BOOTSTRAP_SERVERS = KAFKA["BOOTSTRAP_SERVERS"]
+KAFKA_USERS_TOPIC = KAFKA["TOPICS"]["users"]
+KAFKA_MERCHANTS_TOPIC = KAFKA["TOPICS"]["merchants"]
+KAFKA_BLACKLIST_TOPIC = KAFKA["TOPICS"]["blacklist"]
+CONSUMER_GROUP_ID = KAFKA["GROUPS"]["blacklist"]
+KAFKA_USERNAME = KAFKA["USERNAME"]
+KAFKA_PASSWORD = KAFKA["PASSWORD"]
 
 fake = Faker()
 running = True # Global flag for graceful shutdown
@@ -75,7 +65,7 @@ def create_kafka_consumer(group_id: str, topics: list[str]):
     }
     if KAFKA_USERNAME and KAFKA_PASSWORD:
          consumer_config.update({
-            'security.protocol': 'SASL_PLAINTEXT', # Or SASL_SSL
+            'security.protocol': 'SASL_SSL', # Or SASL_SSL
             'sasl.mechanism': 'PLAIN',
             'sasl.username': KAFKA_USERNAME,
             'sasl.password': KAFKA_PASSWORD
@@ -103,7 +93,7 @@ def create_topic_if_not_exists(bootstrap_servers, topic_name):
     # Add SASL if needed
     if KAFKA_USERNAME and KAFKA_PASSWORD:
          admin_config.update({
-            'security.protocol': 'SASL_PLAINTEXT', # Or SASL_SSL
+            'security.protocol': 'SASL_SSL', # Or SASL_SSL
             'sasl.mechanism': 'PLAIN',
             'sasl.username': KAFKA_USERNAME,
             'sasl.password': KAFKA_PASSWORD
@@ -166,8 +156,9 @@ def process_message(msg, producer, output_topic):
             if topic == KAFKA_USERS_TOPIC and "user_id" in data:
                 entity_id = data["user_id"]
                 entry_type = "user"
-                entry = {**common_data, "entry_type": "user", "user_id": entity_id, "merchant_id": None}
+                entry = {**common_data, "entry_type": entry_type, "user_id": entity_id, "merchant_id": None}
                 message_key = str(entity_id)
+                
             elif topic == KAFKA_MERCHANTS_TOPIC and "merchant_id" in data:
                 entity_id = data["merchant_id"]
                 entry_type = "merchant"
@@ -188,6 +179,7 @@ def process_message(msg, producer, output_topic):
                     )
                     logger.info(f"Published blacklist entry for {entry_type} ID {entity_id}")
                     producer.poll(0) # Poll frequently during production
+                    
                 except BufferError:
                     logger.warning("Kafka producer queue full. Flushing...")
                     producer.flush(5.0)
