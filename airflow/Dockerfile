@@ -1,27 +1,30 @@
-# Use the same base image version as specified in docker-compose.yaml
-ARG AIRFLOW_VERSION=2.10.5
+# Dockerfile for Airflow tasks (runs FraudBlacklist, producers, fetch_exchange_rate, etc.)
+ARG AIRFLOW_VERSION=3.0.0
 FROM apache/airflow:${AIRFLOW_VERSION}-python3.9
 
 USER root
-RUN mkdir -p /app/models
-RUN echo "DOCKERFILE WAS READ SUCCESSFULLY" 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3-pip && \
-    rm -rf /var/lib/apt/lists/* 
 
-# Set Python 3.9 as default
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1 && \
-    update-alternatives --set python /usr/bin/python3.9 && \
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 && \
-    update-alternatives --set python3 /usr/bin/python3.9
+# Optional: Create directory for custom scripts/logs/models
+RUN mkdir -p /app/src && \
+    mkdir -p /app/logs
 
-# Switch to airflow user for Python package installation
+# Install system dependencies if needed
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# Switch to airflow user to install Python requirements
 USER airflow
-COPY requirements.txt /tmp/requirements.txt
-RUN python3.9 -m pip install --upgrade pip && \
-    python3.9 -m pip install -r /tmp/requirements.txt
-RUN echo "tany part"
 
-USER airflow
-# Ensure the installation is in Python path
-ENV PYTHONPATH=/home/airflow/.local/lib/python3.9/site-packages:${PYTHONPATH}
+# Copy and install Python requirements (if using any extra libs for producers)
+COPY ./src/producer/requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip && pip install -r /tmp/requirements.txt
+
+# Copy the application code
+COPY ./src /opt/airflow/src
+
+# Set environment path for custom code
+ENV PYTHONPATH="/opt/airflow/src:${PYTHONPATH}"
+
+# Optional: confirm Dockerfile was loaded
+RUN echo "Airflow Dockerfile configured successfully."

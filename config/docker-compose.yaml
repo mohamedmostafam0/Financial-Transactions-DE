@@ -1,7 +1,7 @@
 version: "3.8"
 
 x-airflow-common: &airflow-common
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.10.5}
+  image: apache/airflow:3.0.0
   build:
     context: ../
     dockerfile: airflow/Dockerfile
@@ -35,22 +35,30 @@ x-airflow-common: &airflow-common
 
 services:
   spark:
-    image: bitnami/spark:latest # or other spark image you're using
+    image: bitnami/spark:latest
+    container_name: spark-bucket-bq
     environment:
-      - SPARK_MODE=master
+      - SPARK_MODE=driver
     volumes:
-      - ./jars:/opt/spark/jars # mount JARs folder
+      - ./jars:/opt/spark/jars
       - ./path/to/your/key.json:/opt/keys/key.json
+      - ./src:/opt/airflow/src # So bucket_to_bq.py is visible
+      - ./config.py:/opt/airflow/src/config.py # Ensures Spark can find config.py
     command: >
       bash -c "
         /opt/bitnami/scripts/spark/entrypoint.sh &&
         spark-submit
-        --jars /opt/spark/jars/gcs-connector-hadoop3-latest.jar
-        --conf spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem
-        --conf spark.hadoop.google.cloud.auth.service.account.enable=true
-        --conf spark.hadoop.google.cloud.auth.service.account.json.keyfile=/opt/keys/key.json
-        /app/your_script.py
+          --jars /opt/spark/jars/gcs-connector-hadoop3-latest.jar
+          --conf spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem
+          --conf spark.hadoop.google.cloud.auth.service.account.enable=true
+          --conf spark.hadoop.google.cloud.auth.service.account.json.keyfile=/opt/keys/key.json
+          /opt/airflow/src/bucket_to_bq.py
       "
+    depends_on:
+      - airflow-webserver
+    networks:
+      - de-network
+
   postgres:
     image: postgres:13
     container_name: postgres_airflow
