@@ -196,7 +196,7 @@ services:
   producer:
     build:
       context: ../
-      dockerfile: src/producer/Dockerfile
+      # dockerfile: src/producer/Dockerfile
     container_name: producer
     env_file:
       - ../.env
