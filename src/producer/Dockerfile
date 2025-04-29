@@ -28,7 +28,6 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY ./src/producer/TransactionProducer.py /app/TransactionProducer.py
 COPY ./src/producer/user_producer.py /app/user_producer.py
 COPY ./src/producer/merchant_producer.py /app/merchant_producer.py
-COPY ./src/shared/consumer_cache.py /app/src/shared/consumer_cache.py 
 COPY ./src/producer/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy the __init__.py files if they exist and are needed for imports
