@@ -1,4 +1,4 @@
-# src/services/FetchExchangeRate.py
+# src/services/exchange_rate_service.py
 import requests
 import json
 import os
@@ -7,7 +7,7 @@ import sys
 from datetime import datetime, timezone # Use timezone-aware datetime
 from confluent_kafka import Producer
 from confluent_kafka.admin import AdminClient, NewTopic
-from src.config import KAFKA, EXCHANGE_RATE_API
+from src.utils.config import KAFKA, EXCHANGE_RATE_API
 
 
 logging.basicConfig(

@@ -49,4 +49,24 @@ AIRFLOW = {
     "FERNET_KEY": os.getenv("AIRFLOW_FERNET_KEY")
 }
 
+# === Schema Registry Configuration ===
+SCHEMA_REGISTRY = {
+    "URL": os.getenv("SCHEMA_REGISTRY_URL", "http://localhost:8081"),
+    "SCHEMAS": {
+        "transactions": "transaction",
+        "users": "user",
+        "merchants": "merchant",
+        "blacklist": "blacklist",
+        "exchange_rates": "exchange_rate"
+    }
+}
 
+# === PostgreSQL Configuration ===
+POSTGRES = {
+    "ENABLED": os.getenv("PG_ENABLED", "true").lower() == "true",
+    "HOST": os.getenv("PG_HOST", "localhost"),
+    "PORT": os.getenv("PG_PORT", "5432"),
+    "DATABASE": os.getenv("PG_DATABASE", "financial_transactions"),
+    "USER": os.getenv("PG_USER", "finapp"),
+    "PASSWORD": os.getenv("PG_PASSWORD", "finapp123")
+}

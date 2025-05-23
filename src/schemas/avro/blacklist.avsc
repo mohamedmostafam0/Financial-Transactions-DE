@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "Blacklist",
+  "namespace": "com.financial.transactions",
+  "fields": [
+    {"name": "entity_type", "type": "string", "doc": "Type of entity (user or merchant)"},
+    {"name": "entity_id", "type": "string", "doc": "ID of the blacklisted entity"},
+    {"name": "reason", "type": "string", "doc": "Reason for blacklisting the entity"},
+    {"name": "timestamp", "type": "string", "doc": "ISO-8601 timestamp when the entity was blacklisted"}
+  ]
+}
