@@ -3,16 +3,10 @@ psycopg2-binary
 xgboost
 python-dotenv
 catboost
-# pyspark
+pyspark
 pandas
-# lightgbm  # Fixed typo (was lightgon)
-# scikit-learn
 pyyaml
 boto3
 tqdm
-joblib  # Replaced tqdm-joblib (not a real package)
-imbalanced-learn  # Correct package name (was imblearn)
-faker
-confluent-kafka
 google-cloud-bigquery
 google-cloud-storage

@@ -15,3 +15,10 @@ boto3>=1.26.0 # For MinIO/S3 interaction
 pendulum # Often useful for DAG scheduling/dates
 requests # If DAGs make HTTP requests (e.g., for exchange rates)
 # dbt-expectations # If using this package for tests in schema.yml
+
+
+# For Kafka integration
+python-dotenv
+faker
+jsonschema
+confluent_kafka
