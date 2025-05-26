@@ -135,7 +135,7 @@ This project simulates a real-world financial transactions processing system usi
 ## 📝 Project Structure
 
 ```
-financial-transactions/
+Financial-Transactions-DE/
 ├── src/
 │   ├── producers/            # Data generation
 │   ├── consumers/            # Data processing
@@ -143,23 +143,17 @@ financial-transactions/
 │   ├── utils/                # Shared utilities
 │   ├── schemas/              # Avro schemas
 │   └── etl/                  # ELT transformations
-├── tests/                    # Unit and integration tests
-└── docs/                     # Documentation
+├── DWH/                      # Data warehouse artifacts
+├── airflow/                  # Airflow configuration
+├── config/                   # Configuration files
+├── dags/                     # Airflow DAGs
+├── data_contracts/           # Data contracts and specifications
+├── jars/                     # Java dependencies
+├── docker-compose.yml        # Docker configuration
+└── .env                      # Environment variables
 ```
 
-## 🔮 Future Enhancements
-
-- [ ] Data quality monitoring with Great Expectations
-- [ ] dbt for data transformations in BigQuery
-- [ ] Analytical dashboards with Looker or Power BI
-- [ ] CI/CD pipeline for automated testing and deployment
-- [ ] Containerization with Docker and Kubernetes
-- [ ] Monitoring and alerting for system health
-- [ ] Additional data sources integration
-- [ ] Machine learning for fraud detection
-
 ## Acknowledgements
-
 - Federal Reserve Economic Data (FRED) for economic indicators
 - Faker library for synthetic data generation
 - Confluent Kafka for event streaming capabilities
