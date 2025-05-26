@@ -83,23 +83,34 @@ class PostgresDB:
         """Initialize database schema if it doesn't exist."""
         with self.get_connection() as conn:
             with conn.cursor() as cursor:
-                # Create users table
+                # Create users table with JSONB for nested data
                 cursor.execute("""
                 CREATE TABLE IF NOT EXISTS users (
                     user_id INTEGER PRIMARY KEY,
                     name VARCHAR(255) NOT NULL,
                     email VARCHAR(255) NOT NULL,
+                    age INTEGER,
+                    gender VARCHAR(10),
+                    occupation VARCHAR(255),
+                    account_created TIMESTAMP WITH TIME ZONE,
+                    location JSONB,
+                    financial JSONB,
+                    preferences JSONB,
                     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
                 )
                 """)
                 
-                # Create merchants table
+                # Create merchants table with JSONB for nested data
                 cursor.execute("""
                 CREATE TABLE IF NOT EXISTS merchants (
                     merchant_id VARCHAR(36) PRIMARY KEY,
                     merchant_name VARCHAR(255) NOT NULL,
                     merchant_category VARCHAR(100) NOT NULL,
+                    location JSONB,
+                    business JSONB,
+                    payment JSONB,
+                    risk JSONB,
                     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
                 )
@@ -121,6 +132,9 @@ class PostgresDB:
                 # Create indexes
                 cursor.execute("CREATE INDEX IF NOT EXISTS idx_blacklist_entity ON blacklist(entity_type, entity_id)")
                 cursor.execute("CREATE INDEX IF NOT EXISTS idx_blacklist_timestamp ON blacklist(timestamp)")
+                cursor.execute("CREATE INDEX IF NOT EXISTS idx_users_location ON users USING GIN (location)")
+                cursor.execute("CREATE INDEX IF NOT EXISTS idx_merchants_location ON merchants USING GIN (location)")
+                cursor.execute("CREATE INDEX IF NOT EXISTS idx_merchants_category ON merchants(merchant_category)")
                 
                 conn.commit()
                 logger.info("Database schema initialized")
@@ -186,16 +200,46 @@ class PostgresDB:
         try:
             conn = self.get_connection()
             with conn.cursor() as cursor:
+                # Extract basic fields
+                user_id = user['user_id']
+                name = user['name']
+                email = user['email']
+                
+                # Extract optional fields with defaults
+                age = user.get('age')
+                gender = user.get('gender')
+                occupation = user.get('occupation')
+                account_created = user.get('account_created')
+                
+                # Extract JSON fields
+                location = json.dumps(user.get('location', {})) if user.get('location') else None
+                financial = json.dumps(user.get('financial', {})) if user.get('financial') else None
+                preferences = json.dumps(user.get('preferences', {})) if user.get('preferences') else None
+                
                 cursor.execute("""
-                INSERT INTO users (user_id, name, email)
-                VALUES (%s, %s, %s)
+                INSERT INTO users (
+                    user_id, name, email, age, gender, occupation, 
+                    account_created, location, financial, preferences, 
+                    created_at, updated_at
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s::jsonb, %s::jsonb, %s::jsonb, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                 ON CONFLICT (user_id) 
                 DO UPDATE SET 
                     name = EXCLUDED.name,
                     email = EXCLUDED.email,
+                    age = EXCLUDED.age,
+                    gender = EXCLUDED.gender,
+                    occupation = EXCLUDED.occupation,
+                    account_created = EXCLUDED.account_created,
+                    location = EXCLUDED.location,
+                    financial = EXCLUDED.financial,
+                    preferences = EXCLUDED.preferences,
                     updated_at = CURRENT_TIMESTAMP
                 RETURNING user_id
-                """, (user['user_id'], user['name'], user['email']))
+                """, (
+                    user_id, name, email, age, gender, occupation, 
+                    account_created, location, financial, preferences
+                ))
                 
                 result = cursor.fetchone()
                 conn.commit()
@@ -278,39 +322,6 @@ class PostgresDB:
             merchant (Dict): Merchant data
             
         Returns:
-            bool: True if successful, False otherwise
-        """
-        if not self.is_connected():
-            logger.warning("PostgreSQL not connected, skipping merchant insert")
-            return False
-        
-        conn = None
-        try:
-            conn = self.get_connection()
-            with conn.cursor() as cursor:
-                cursor.execute("""
-                INSERT INTO merchants (merchant_id, merchant_name, merchant_category)
-                VALUES (%s, %s, %s)
-                ON CONFLICT (merchant_id) 
-                DO UPDATE SET 
-                    merchant_name = EXCLUDED.merchant_name,
-                    merchant_category = EXCLUDED.merchant_category,
-                    updated_at = CURRENT_TIMESTAMP
-                RETURNING merchant_id
-                """, (
-                    merchant['merchant_id'], 
-                    merchant['merchant_name'], 
-                    merchant['merchant_category']
-                ))
-                
-                result = cursor.fetchone()
-                conn.commit()
-                return result is not None
-        except psycopg2.Error as e:
-            logger.error(f"Error inserting merchant: {e}")
-            if conn:
-                conn.rollback()
-            return False
         finally:
             if conn:
                 self.release_connection(conn)

@@ -41,10 +41,57 @@ def generate_merchant():
     merchant_name = fake.company()
     merchant_category = random.choice(CATEGORIES)
     
+    # Generate location data
+    country_code = fake.country_code()
+    city = fake.city()
+    latitude = float(fake.latitude())
+    longitude = float(fake.longitude())
+    
+    # Generate business details
+    founded_date = fake.date_between(start_date='-30y', end_date='-1y')
+    business_size = random.choice(["Small", "Medium", "Large", "Enterprise"])
+    online_presence = random.choice([True, False])
+    
+    # Generate payment methods accepted
+    payment_methods = random.sample(
+        ["Credit Card", "Debit Card", "PayPal", "Bank Transfer", "Cash", "Cryptocurrency", "Mobile Payment"],
+        k=random.randint(2, 5)
+    )
+    
+    # Generate merchant risk profile
+    risk_score = random.randint(1, 100)
+    fraud_history = random.choices([True, False], weights=[5, 95])[0]  # 5% chance of fraud history
+    
     return {
         "merchant_id": merchant_id,
         "merchant_name": merchant_name,
-        "merchant_category": merchant_category
+        "merchant_category": merchant_category,
+        "location": {
+            "country": country_code,
+            "city": city,
+            "address": fake.street_address(),
+            "postal_code": fake.postcode(),
+            "latitude": latitude,
+            "longitude": longitude
+        },
+        "business": {
+            "founded_date": founded_date.isoformat(),
+            "business_size": business_size,
+            "online_presence": online_presence,
+            "website": fake.url() if online_presence else None,
+            "contact_email": fake.company_email(),
+            "contact_phone": fake.phone_number()
+        },
+        "payment": {
+            "methods_accepted": payment_methods,
+            "currency": random.choice(["USD", "EUR", "GBP", "JPY", "CAD", "AUD"]),
+            "average_transaction": round(random.uniform(10, 500), 2)
+        },
+        "risk": {
+            "score": risk_score,
+            "fraud_history": fraud_history,
+            "verification_level": random.choice(["Basic", "Verified", "Premium"])
+        }
     }
 
 def run():

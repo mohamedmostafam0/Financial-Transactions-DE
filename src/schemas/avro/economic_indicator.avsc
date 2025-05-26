@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "EconomicIndicator",
+  "namespace": "com.financial.transactions",
+  "fields": [
+    {"name": "timestamp", "type": "string"},
+    {"name": "indicator_id", "type": "string"},
+    {"name": "indicator_name", "type": "string"},
+    {"name": "value", "type": "double"},
+    {"name": "date", "type": "string"},
+    {"name": "country", "type": "string"},
+    {"name": "frequency", "type": "string"},
+    {"name": "source", "type": "string"}
+  ]
+}

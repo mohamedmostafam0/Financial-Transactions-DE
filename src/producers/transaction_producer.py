@@ -7,7 +7,7 @@ import sys
 import random
 import logging
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from faker import Faker
 from confluent_kafka import Producer, KafkaException
 from confluent_kafka.avro import AvroProducer
@@ -161,21 +161,105 @@ class TransactionProducer:
             
         logger.info(f"Retrieved data from PostgreSQL - User: {user['user_id']}, Merchant: {merchant['merchant_id']}")
 
+        # Determine transaction location
+        # 80% chance transaction happens at merchant location, 20% chance it's online
+        is_online_transaction = random.random() < 0.2
         
+        # Extract location data
+        if is_online_transaction:
+            # For online transactions, use user's location
+            try:
+                location_country = user.get('location', {}).get('country')
+                location_city = user.get('location', {}).get('city')
+                latitude = user.get('location', {}).get('latitude')
+                longitude = user.get('location', {}).get('longitude')
+            except (KeyError, AttributeError):
+                # Fallback if location data isn't available in the expected format
+                location_country = fake.country_code()
+                location_city = fake.city()
+                latitude = float(fake.latitude())
+                longitude = float(fake.longitude())
+        else:
+            # For in-person transactions, use merchant's location
+            try:
+                location_country = merchant.get('location', {}).get('country')
+                location_city = merchant.get('location', {}).get('city')
+                latitude = merchant.get('location', {}).get('latitude')
+                longitude = merchant.get('location', {}).get('longitude')
+            except (KeyError, AttributeError):
+                # Fallback if location data isn't available in the expected format
+                location_country = fake.country_code()
+                location_city = fake.city()
+                latitude = float(fake.latitude())
+                longitude = float(fake.longitude())
+        
+        # Generate transaction amount based on merchant category
+        category = merchant.get("merchant_category")
+        if category == "Retail":
+            amount = float(round(random.uniform(10, 200), 2))
+        elif category == "Electronics":
+            amount = float(round(random.uniform(50, 2000), 2))
+        elif category == "Travel":
+            amount = float(round(random.uniform(100, 5000), 2))
+        elif category == "Dining":
+            amount = float(round(random.uniform(20, 300), 2))
+        elif category == "Services":
+            amount = float(round(random.uniform(50, 500), 2))
+        elif category == "Health":
+            amount = float(round(random.uniform(20, 1000), 2))
+        elif category == "Entertainment":
+            amount = float(round(random.uniform(10, 300), 2))
+        elif category == "Education":
+            amount = float(round(random.uniform(100, 3000), 2))
+        elif category == "Finance":
+            amount = float(round(random.uniform(100, 10000), 2))
+        else:
+            amount = float(round(random.uniform(5, 5000), 2))
+        
+        # Determine currency - use merchant's currency if available
+        try:
+            currency = merchant.get('payment', {}).get('currency')
+        except (KeyError, AttributeError):
+            currency = random.choice(ISO_CURRENCY_CODES)
+        
+        # Determine card type based on user's preferences if available
+        try:
+            payment_methods = user.get('financial', {}).get('preferred_payment_methods', [])
+            if 'Credit Card' in payment_methods:
+                card_type = random.choice(["Visa", "MasterCard", "Amex"])
+            elif 'Debit Card' in payment_methods:
+                card_type = random.choice(["Visa Debit", "MasterCard Debit"])
+            else:
+                card_type = random.choice(CARD_TYPES)
+        except (KeyError, AttributeError):
+            card_type = random.choice(CARD_TYPES)
+        
+        # Generate transaction timestamp with slight randomization
+        timestamp = datetime.now(timezone.utc) - timedelta(minutes=random.randint(0, 60))
+        
+        # Build the transaction object
         txn = {
             "transaction_id": fake.uuid4(),
             "user_id": user["user_id"],
-            "amount": float(round(random.uniform(5, 5000), 2)),
-            "currency": random.choice(ISO_CURRENCY_CODES),
+            "amount": amount,
+            "currency": currency,
             "merchant_id": merchant["merchant_id"],
             "merchant_name": merchant["merchant_name"],
-            "merchant_category": merchant.get("merchant_category", "Unknown"),
-            "card_type": random.choice(CARD_TYPES),
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "location_country": fake.country_code(),
-            "location_city": fake.city(),
-            "latitude": float(fake.latitude()),
-            "longitude": float(fake.longitude())
+            "merchant_category": merchant.get("merchant_category"),
+            "card_type": card_type,
+            "timestamp": timestamp.isoformat(),
+            "location_country": location_country,
+            "location_city": location_city,
+            "latitude": latitude,
+            "longitude": longitude,
+            "is_online": is_online_transaction,
+            "status": "approved",  # Default status
+            "transaction_type": random.choice(["purchase", "refund", "authorization", "adjustment"]),
+            "payment_method_details": {
+                "type": "card",
+                "card_present": not is_online_transaction,
+                "entry_mode": random.choice(["chip", "swipe", "contactless", "manual", "online"]) if not is_online_transaction else "online"
+            }
         }
         
         # Transactions are only published to Kafka, not stored in PostgreSQL
