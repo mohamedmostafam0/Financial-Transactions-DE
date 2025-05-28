@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# src/consumers/economic_indicators_consumer.py
+# src/consumers/transaction_consumer.py
 
 import json
 import logging
@@ -25,33 +25,33 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger("EconomicIndicatorsConsumer")
+logger = logging.getLogger("TransactionConsumer")
 
 # Kafka configuration
 KAFKA_BOOTSTRAP_SERVERS = KAFKA["BOOTSTRAP_SERVERS"]
 KAFKA_USERNAME = KAFKA["USERNAME"]
 KAFKA_PASSWORD = KAFKA["PASSWORD"]
-KAFKA_TOPIC = KAFKA["TOPICS"]["economic_indicators"]
-CONSUMER_GROUP_ID = "economic_indicators_consumer"
+KAFKA_TOPIC = KAFKA["TOPICS"]["transactions"]
+CONSUMER_GROUP_ID = "transaction_consumer"
 SCHEMA_REGISTRY_URL = SCHEMA_REGISTRY["URL"]
 
 # GCS configuration
 GCP_PROJECT_ID = BIGQUERY["PROJECT_ID"]
 GCS_BUCKET = BIGQUERY["PARQUET_OUTPUT_BUCKET"]
-GCS_PREFIX = f"{BIGQUERY['PARQUET_OUTPUT_PREFIX']}/economic_indicators"
+GCS_PREFIX = f"{BIGQUERY['PARQUET_OUTPUT_PREFIX']}/transactions"
 
 # Batch settings
-BATCH_SIZE = 10  # Number of messages to batch before writing to GCS
+BATCH_SIZE = 100  # Number of messages to batch before writing to GCS (higher for transactions)
 FLUSH_INTERVAL = 60  # Seconds between forced flushes
 
 # Global flag for graceful shutdown
 running = True
 
-class EconomicIndicatorsConsumer:
-    """Consumer for economic indicators data from Kafka to BigQuery"""
+class TransactionConsumer:
+    """Consumer for transaction data from Kafka to GCS data lake"""
     
     def __init__(self):
-        """Initialize the economic indicators consumer"""
+        """Initialize the transaction consumer"""
         if not KAFKA_BOOTSTRAP_SERVERS:
             logger.critical("KAFKA_BOOTSTRAP_SERVERS not set.")
             sys.exit(1)
@@ -77,7 +77,7 @@ class EconomicIndicatorsConsumer:
         # Create both Avro and regular consumers for flexibility
         try:
             self.avro_consumer = AvroConsumer(consumer_config)
-            logger.info("Created Avro consumer for economic indicators")
+            logger.info("Created Avro consumer for transactions")
             self.use_avro = True
         except Exception as e:
             logger.error(f"Failed to create Avro consumer: {e}")
@@ -94,6 +94,7 @@ class EconomicIndicatorsConsumer:
         # Initialize message buffer for batching
         self.message_buffer = []
         self.last_flush_time = time.time()
+        self.transaction_count = 0
         
         # Ensure GCS bucket exists
         self._ensure_bucket_exists()
@@ -102,16 +103,28 @@ class EconomicIndicatorsConsumer:
         signal.signal(signal.SIGINT, self._handle_shutdown)
         signal.signal(signal.SIGTERM, self._handle_shutdown)
         
-        
     def _handle_shutdown(self, signum, frame):
         """Handle shutdown signals"""
         global running
         logger.info("Shutdown signal received.")
         running = False
         
+    def _ensure_bucket_exists(self):
+        """Ensure the GCS bucket exists"""
+        try:
+            bucket = self.storage_client.bucket(GCS_BUCKET)
+            if not bucket.exists():
+                logger.warning(f"Bucket {GCS_BUCKET} does not exist. Creating it...")
+                bucket = self.storage_client.create_bucket(GCS_BUCKET)
+                logger.info(f"Created bucket {GCS_BUCKET}")
+            else:
+                logger.info(f"Bucket {GCS_BUCKET} already exists")
+        except Exception as e:
+            logger.error(f"Error ensuring bucket exists: {e}")
+            raise
     
     def process_message(self, message):
-        """Process a single message from Kafka and add to buffer"""
+        """Process a single transaction message from Kafka and add to buffer"""
         try:
             # Parse message value - Avro messages are already deserialized to dict
             # Regular messages need JSON parsing
@@ -126,16 +139,18 @@ class EconomicIndicatorsConsumer:
             else:
                 data = message_value
                 
-            logger.debug(f"Received message: {data}")
-            
             # Add received timestamp if not present
             if 'received_at' not in data:
                 data['received_at'] = datetime.now(timezone.utc).isoformat()
                 
             # Add to buffer
             self.message_buffer.append(data)
-            logger.debug(f"Added message to buffer. Buffer size: {len(self.message_buffer)}")
+            self.transaction_count += 1
             
+            # Log progress periodically
+            if self.transaction_count % 1000 == 0:
+                logger.info(f"Processed {self.transaction_count} transactions so far")
+                
             # Check if we should flush the buffer
             should_flush = len(self.message_buffer) >= BATCH_SIZE
             time_to_flush = (time.time() - self.last_flush_time) >= FLUSH_INTERVAL
@@ -163,9 +178,10 @@ class EconomicIndicatorsConsumer:
             year = datetime.now().strftime("%Y")
             month = datetime.now().strftime("%m")
             day = datetime.now().strftime("%d")
+            hour = datetime.now().strftime("%H")
             
-            # Create path with partitioning by year/month/day
-            file_path = f"{GCS_PREFIX}/{year}/{month}/{day}/economic_indicators_{timestamp}_{unique_id}.json"
+            # Create path with partitioning by year/month/day/hour
+            file_path = f"{GCS_PREFIX}/{year}/{month}/{day}/{hour}/transactions_{timestamp}_{unique_id}.json"
             
             # Convert buffer to JSON
             json_data = json.dumps(self.message_buffer, indent=2)
@@ -175,7 +191,7 @@ class EconomicIndicatorsConsumer:
             blob = bucket.blob(file_path)
             blob.upload_from_string(json_data, content_type='application/json')
             
-            logger.info(f"Flushed {len(self.message_buffer)} messages to GCS: gs://{GCS_BUCKET}/{file_path}")
+            logger.info(f"Flushed {len(self.message_buffer)} transactions to GCS: gs://{GCS_BUCKET}/{file_path}")
             
             # Clear buffer and update last flush time
             buffer_size = len(self.message_buffer)
@@ -189,10 +205,10 @@ class EconomicIndicatorsConsumer:
             return 0
     
     def run(self):
-        """Main function to consume economic indicators and load to GCS"""
+        """Main function to consume transactions and load to GCS"""
         global running
         
-        logger.info(f"Economic indicators consumer started for topic: {KAFKA_TOPIC}")
+        logger.info(f"Transaction consumer started for topic: {KAFKA_TOPIC}")
         logger.info(f"Consumer group ID: {CONSUMER_GROUP_ID}")
         logger.info(f"GCS destination: gs://{GCS_BUCKET}/{GCS_PREFIX}/")
         
@@ -240,7 +256,7 @@ class EconomicIndicatorsConsumer:
         finally:
             # Flush any remaining messages in the buffer
             if self.message_buffer:
-                logger.info(f"Flushing {len(self.message_buffer)} remaining messages before shutdown")
+                logger.info(f"Flushing {len(self.message_buffer)} remaining transactions before shutdown")
                 self._flush_buffer_to_gcs()
                 
             # Close consumers
@@ -248,11 +264,11 @@ class EconomicIndicatorsConsumer:
                 self.avro_consumer.close()
             else:
                 self.regular_consumer.close()
-            logger.info("Economic indicators consumer stopped")
+            logger.info("Transaction consumer stopped")
 
 def main():
-    """Entry point for the economic indicators consumer"""
-    consumer = EconomicIndicatorsConsumer()
+    """Entry point for the transaction consumer"""
+    consumer = TransactionConsumer()
     consumer.run()
 
 if __name__ == "__main__":

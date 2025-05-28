@@ -66,7 +66,7 @@ def generate_user():
         "name": fake.name(),
         "email": fake.email(),
         "age": random.randint(18, 85),
-        "gender": random.choice(["M", "F", "Other"]),
+        "gender": random.choice(["M", "F"]),
         "occupation": fake.job(),
         "account_created": account_created.isoformat(),
         "location": {
@@ -91,7 +91,7 @@ def generate_user():
 
 def run():
     """Main function to generate users and store them in PostgreSQL"""
-    logger.info("🚀 User producer started - writing to PostgreSQL only")
+    logger.info("User producer started - writing to PostgreSQL only")
     
     # Track users we've already generated
     user_count = 0
@@ -103,14 +103,14 @@ def run():
             
             # Store in PostgreSQL
             if db.insert_user(user):
-                logger.info(f"✅ Stored user in database: {user_id}")
+                logger.info(f"Stored user in database: {user_id}")
                 user_count += 1
                 
                 # Every 100 users, log a summary
                 if user_count % 100 == 0:
                     logger.info(f"Generated {user_count} users so far")
             else:
-                logger.warning(f"❌ Failed to store user in database: {user_id}")
+                logger.warning(f"Failed to store user in database: {user_id}")
             
             # Sleep before generating next user
             time.sleep(PRODUCER_INTERVAL)

@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "ExchangeRate",
+  "namespace": "com.financial.transactions",
+  "fields": [
+    {"name": "base_currency", "type": "string"},
+    {"name": "target_currency", "type": "string"},
+    {"name": "rate", "type": "double"},
+    {"name": "api_timestamp_iso_utc", "type": "string"},
+    {"name": "fetch_timestamp_iso_utc", "type": "string"}
+  ]
+}
