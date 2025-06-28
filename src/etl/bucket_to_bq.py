@@ -24,14 +24,32 @@ def load_data_to_bigquery_raw(gcs_uri):
     client = bigquery.Client(project=GCP_PROJECT_ID)
     raw_table_id = f"{GCP_PROJECT_ID}.{BQ_DATASET}.{BQ_RAW_TABLE}"
     
-    # Configure the load job
+    # Get the latest timestamp from BigQuery
+    query = f"""
+        SELECT MAX(timestamp) as last_load_time 
+        FROM `{raw_table_id}`
+    """
+    last_load_time = None
+    try:
+        query_job = client.query(query)
+        results = query_job.result()
+        for row in results:
+            last_load_time = row.last_load_time
+    except Exception as e:
+        logger.warning(f"No existing data found: {str(e)}")
+    
+    # Configure the load job with partitioning
     job_config = bigquery.LoadJobConfig(
-        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
+        source_format=bigquery.SourceFormat.PARQUET,  # Changed from JSON to PARQUET
         write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
-        autodetect=True  # Automatically detect schema
+        time_partitioning=bigquery.TimePartitioning(
+            type_=bigquery.TimePartitioningType.DAY,
+            field="timestamp"  # Assuming your data has a timestamp field
+        ),
+        clustering_fields=["user_id"]  # Optional clustering
     )
     
-    # Start the load job
+    # Load data from GCS
     load_job = client.load_table_from_uri(
         gcs_uri,
         raw_table_id,
@@ -40,7 +58,8 @@ def load_data_to_bigquery_raw(gcs_uri):
     
     # Wait for the job to complete
     load_job.result()
-    logger.info(f"✅ Loaded data from {gcs_uri} into BigQuery raw table {raw_table_id}")
+    
+    logger.info(f"✅ Loaded data to BigQuery raw table {raw_table_id}")
     
     return raw_table_id
 
