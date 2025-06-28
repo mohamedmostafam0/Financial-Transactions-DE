@@ -9,8 +9,8 @@ x-airflow-common: &airflow-common
     - .env
   environment: &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-airflow}@postgres/${POSTGRES_DB:-airflow}
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://${POSTGRES_USER:-airflow}:${POSTGRES_PASSWORD:-airflow}@postgres/${POSTGRES_DB:-airflow}
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+    AIRFLOW__CELERY__RESULT_BACKEND: db+sqlite:////opt/airflow/airflow.db
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
@@ -54,25 +54,7 @@ services:
     networks:
       - de-network
 
-  postgres:
-    image: postgres:13
-    container_name: postgres_airflow
-    env_file:
-      - ../.env
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-airflow}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-airflow}
-      POSTGRES_DB: ${POSTGRES_DB:-airflow}
-    volumes:
-      - airflow-postgres-volume:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "airflow", "-d", "airflow"]
-      interval: 10s
-      retries: 5
-      start_period: 5s
-    restart: always
-    networks:
-      - de-network
+
 
   redis:
     image: redis:7.2-bookworm
@@ -107,8 +89,6 @@ services:
       _PIP_ADDITIONAL_REQUIREMENTS: ""
     user: "0:0"
     depends_on:
-      postgres:
-        condition: service_healthy
       redis:
         condition: service_healthy
     volumes:
@@ -150,8 +130,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-      postgres:
-        condition: service_healthy
       redis:
         condition: service_healthy
     networks:
@@ -229,8 +207,7 @@ services:
   #     - de-network
 >>>>>>> de7e0610e73551440ec82aeba76fac6a167e8fc6
 
-volumes:
-  airflow-postgres-volume:
+
   logs:
 
 networks:

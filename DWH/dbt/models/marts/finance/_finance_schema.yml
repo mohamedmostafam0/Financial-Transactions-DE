@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: fct_transactions
+    description: "Fact table containing transaction data with standardized fields"
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for the transaction"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "User identifier"
+        tests:
+          - not_null
+      - name: amount
+        description: "Transaction amount"
+        tests:
+          - not_null
+          - greater_than_or_equal_to: 0
+      - name: currency_code
+        description: "Currency code of the transaction"
+        tests:
+          - not_null
+      - name: transaction_timestamp_utc
+        description: "Transaction timestamp in UTC"
+        tests:
+          - not_null
+
+  - name: fraud_analysis_view
+    description: "View for fraud analysis with enriched features"
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for the transaction"
+        tests:
+          - unique
+          - not_null
+      - name: is_fraud
+        description: "Flag indicating if transaction is fraud"
+        tests:
+          - not_null
+      - name: transaction_hour
+        description: "Hour of the transaction"
+        tests:
+          - not_null
+          - between:
+              min_value: 0
+              max_value: 23
+      - name: transaction_day_of_week
+        description: "Day of week of the transaction"
+        tests:
+          - not_null
+          - between:
+              min_value: 1
+              max_value: 7
+
+  - name: ml_features_view
+    description: "View for ML features with standardized format"
+    columns:
+      - name: transaction_id
+        description: "Unique identifier for the transaction"
+        tests:
+          - unique
+          - not_null
+      - name: is_fraud
+        description: "Label indicating if transaction is fraud"
+        tests:
+          - not_null

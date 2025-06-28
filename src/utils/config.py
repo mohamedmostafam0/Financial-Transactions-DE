@@ -14,18 +14,17 @@ KAFKA = {
         "transactions": os.getenv("KAFKA_TRANSACTIONS_TOPIC"),
         "users": os.getenv("KAFKA_USERS_TOPIC"),
         "merchants": os.getenv("KAFKA_MERCHANTS_TOPIC"),
-        "blacklist": os.getenv("KAFKA_BLACKLIST_TOPIC"),
+
         "exchange_rates": os.getenv("KAFKA_EXCHANGE_RATES_TOPIC", "exchange_rates"),
         "economic_indicators": os.getenv("KAFKA_ECONOMIC_INDICATORS_TOPIC", "economic_indicators")
     },
     "GROUPS": {
-        "blacklist": os.getenv("BLACKLIST_CONSUMER_GROUP"),
+
         "transaction_producer": os.getenv("TRANSACTION_PRODUCER_CONSUMER_GROUP")
     }
 }
 
-# === Blacklist Logic ===
-BLACKLIST_PROBABILITY = float(os.getenv("BLACKLIST_PROBABILITY", "0.01"))
+
 
 # === Exchange Rate API ===
 EXCHANGE_RATE_API = {
@@ -49,11 +48,23 @@ BIGQUERY = {
     "PARQUET_OUTPUT_PREFIX": os.getenv("PARQUET_OUTPUT_PREFIX")
 }
 
-# === Optional: Postgres / Airflow config (if needed in DAGs) ===
+# === Airflow Configuration ===
 AIRFLOW = {
-    "USER": os.getenv("AIRFLOW_USER"),
-    "PASSWORD": os.getenv("AIRFLOW_PASSWORD"),
-    "FERNET_KEY": os.getenv("AIRFLOW_FERNET_KEY")
+    "CONNECTIONS": {
+        "default": {
+            "conn_type": "http",
+            "host": "localhost",
+            "port": "8080"
+        }
+    }
+}
+
+# === Database Configuration ===
+DATABASE = {
+    "bigquery": {
+        "project": os.getenv("GCP_PROJECT_ID", "your-project-id"),
+        "dataset": os.getenv("BQ_DATASET", "financial_transactions")
+    }
 }
 
 # === Schema Registry Configuration ===
@@ -63,18 +74,8 @@ SCHEMA_REGISTRY = {
         "transactions": "transaction",
         "users": "user",
         "merchants": "merchant",
-        "blacklist": "blacklist",
+
         "exchange_rates": "exchange_rate",
         "economic_indicators": "economic_indicator"
     }
-}
-
-# === PostgreSQL Configuration ===
-POSTGRES = {
-    "ENABLED": os.getenv("PG_ENABLED", "true").lower() == "true",
-    "HOST": os.getenv("PG_HOST", "localhost"),
-    "PORT": os.getenv("PG_PORT", "5432"),
-    "DATABASE": os.getenv("PG_DATABASE", "financial_transactions"),
-    "USER": os.getenv("PG_USER", "finapp"),
-    "PASSWORD": os.getenv("PG_PASSWORD", "finapp123")
 }

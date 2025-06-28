@@ -13,7 +13,6 @@ This project simulates a real-world financial transactions processing system usi
 - **Rich Data Generation**: Realistic user, merchant, and transaction data with detailed attributes
 - **Event Streaming**: Kafka-based event processing pipeline
 - **Cloud Integration**: Google Cloud Storage and BigQuery for data warehousing
-- **Fraud Detection**: Real-time transaction monitoring and blacklisting
 - **Economic Context**: Integration with FRED economic indicators API
 - **Data Quality**: Schema validation and error handling
 - **Flexible Storage**: PostgreSQL for operational data, BigQuery for analytics
@@ -128,7 +127,6 @@ This project simulates a real-world financial transactions processing system usi
 
 4. Start the consumers:
    ```bash
-   python -m src.consumers.fraud_blacklist
    python -m src.consumers.economic_indicators_consumer
    ```
 

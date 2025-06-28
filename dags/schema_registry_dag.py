@@ -56,14 +56,6 @@ task_transaction_producer = PythonOperator(
     dag=dag,
 )
 
-# Define task for fraud blacklist consumer
-task_fraud_blacklist = PythonOperator(
-    task_id='fraud_blacklist',
-    python_callable=run_python_script,
-    op_args=['/opt/airflow/src/consumers/fraud_blacklist.py'],
-    dag=dag,
-)
-
 # Define task for exchange rate service
 task_fetch_exchange_rate = PythonOperator(
     task_id='fetch_exchange_rate',
@@ -81,7 +73,7 @@ task_bucket_to_bq = PythonOperator(
 )
 
 # Set the schedule for tasks running every minute
-for task in [task_merchant_producer, task_user_producer, task_transaction_producer, task_fraud_blacklist]:
+for task in [task_merchant_producer, task_user_producer, task_transaction_producer]:
     task.schedule_interval = timedelta(minutes=1)
 
 # Set the schedule for FetchExchangeRate.py to run once every 24 hours
@@ -91,12 +83,10 @@ task_fetch_exchange_rate.schedule_interval = timedelta(days=1)
 task_bucket_to_bq.schedule_interval = timedelta(hours=1)
 
 # Set task dependencies
-# First register schemas, then start producers, then consumers, then ETL
 task_register_schemas >> [task_merchant_producer, task_user_producer]
 task_merchant_producer >> task_transaction_producer
 task_user_producer >> task_transaction_producer
-task_transaction_producer >> task_fraud_blacklist
-task_fraud_blacklist >> task_bucket_to_bq
+task_transaction_producer >> task_bucket_to_bq
 
 # Exchange rate service runs independently
 task_register_schemas >> task_fetch_exchange_rate
