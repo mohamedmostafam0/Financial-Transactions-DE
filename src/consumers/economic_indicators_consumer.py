@@ -12,6 +12,9 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List
 from io import BytesIO
 
+import pandas as pd
+import pyarrow as pa
+import pyarrow.parquet as pq
 from confluent_kafka import Consumer, KafkaException
 from confluent_kafka.avro import AvroConsumer
 from confluent_kafka.avro.serializer import SerializerError
@@ -43,6 +46,10 @@ GCS_PREFIX = f"{BIGQUERY['PARQUET_OUTPUT_PREFIX']}/economic_indicators"
 # Batch settings
 BATCH_SIZE = 10  # Number of messages to batch before writing to GCS
 FLUSH_INTERVAL = 60  # Seconds between forced flushes
+
+# Parquet settings
+ROW_GROUP_SIZE = 10000  # Row group size for Parquet files
+COMPRESSION = 'snappy'  # Compression codec for Parquet files
 
 # Global flag for graceful shutdown
 running = True
@@ -150,7 +157,7 @@ class EconomicIndicatorsConsumer:
             return False
     
     def _flush_buffer_to_gcs(self):
-        """Flush the message buffer to GCS"""
+        """Flush the message buffer to GCS as Parquet"""
         if not self.message_buffer:
             logger.debug("Buffer is empty, nothing to flush")
             self.last_flush_time = time.time()
@@ -165,17 +172,34 @@ class EconomicIndicatorsConsumer:
             day = datetime.now().strftime("%d")
             
             # Create path with partitioning by year/month/day
-            file_path = f"{GCS_PREFIX}/{year}/{month}/{day}/economic_indicators_{timestamp}_{unique_id}.json"
+            file_path = f"{GCS_PREFIX}/{year}/{month}/{day}/economic_indicators_{timestamp}_{unique_id}.parquet"
             
-            # Convert buffer to JSON
-            json_data = json.dumps(self.message_buffer, indent=2)
+            # Convert buffer to DataFrame
+            df = pd.DataFrame(self.message_buffer)
+            
+            # Convert DataFrame to PyArrow Table
+            table = pa.Table.from_pandas(df)
+            
+            # Create an in-memory buffer
+            buf = BytesIO()
+            
+            # Write to Parquet format
+            pq.write_table(
+                table, 
+                buf,
+                compression=COMPRESSION,
+                row_group_size=ROW_GROUP_SIZE
+            )
+            
+            # Reset buffer position to beginning
+            buf.seek(0)
             
             # Upload to GCS
             bucket = self.storage_client.bucket(GCS_BUCKET)
             blob = bucket.blob(file_path)
-            blob.upload_from_string(json_data, content_type='application/json')
+            blob.upload_from_file(buf, content_type='application/octet-stream')
             
-            logger.info(f"Flushed {len(self.message_buffer)} messages to GCS: gs://{GCS_BUCKET}/{file_path}")
+            logger.info(f"Flushed {len(self.message_buffer)} messages to GCS as Parquet: gs://{GCS_BUCKET}/{file_path}")
             
             # Clear buffer and update last flush time
             buffer_size = len(self.message_buffer)
@@ -194,7 +218,7 @@ class EconomicIndicatorsConsumer:
         
         logger.info(f"Economic indicators consumer started for topic: {KAFKA_TOPIC}")
         logger.info(f"Consumer group ID: {CONSUMER_GROUP_ID}")
-        logger.info(f"GCS destination: gs://{GCS_BUCKET}/{GCS_PREFIX}/")
+        logger.info(f"GCS destination: gs://{GCS_BUCKET}/{GCS_PREFIX}/ (Parquet format)")
         
         # Subscribe to topic with the appropriate consumer
         if self.use_avro:
@@ -240,7 +264,7 @@ class EconomicIndicatorsConsumer:
         finally:
             # Flush any remaining messages in the buffer
             if self.message_buffer:
-                logger.info(f"Flushing {len(self.message_buffer)} remaining messages before shutdown")
+                logger.info(f"Flushing {len(self.message_buffer)} remaining messages as Parquet before shutdown")
                 self._flush_buffer_to_gcs()
                 
             # Close consumers

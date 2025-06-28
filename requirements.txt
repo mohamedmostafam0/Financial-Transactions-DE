@@ -1,16 +1,3 @@
-apache-airflow==2.6.0       
-psycopg2-binary
-xgboost
-python-dotenv
-catboost
-pyspark
-pandas
-pyyaml
-boto3
-tqdm
-google-cloud-bigquery
-google-cloud-storage
-
 pyspark>=3.4.0
 pandas>=2.0.0
 numpy>=1.24.0

@@ -47,10 +47,10 @@ def check_schema_compatibility(schema_file, subject, registry_url=None):
             print(f"✅ Schema is compatible with {subject}")
             return True
         else:
-            print(f"❌ Schema is NOT compatible with {subject}")
+            print(f" Schema is NOT compatible with {subject}")
             return False
     else:
-        print(f"❌ Error checking compatibility: {r.text}")
+        print(f" Error checking compatibility: {r.text}")
         return False
 
 if __name__ == "__main__":
