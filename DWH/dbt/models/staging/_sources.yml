@@ -1,25 +1,11 @@
-# dbt/models/staging/_sources.yml
 version: 2
 
 sources:
-  - name: raw_data # Arbitrary source group name
-    database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}" # Use your raw database name
-    schema: RAW # Schema where Kafka Connect lands data
+  - name: raw_data
+    project: sunlit-pixel-456910-j0
+    dataset: raw
     tables:
-      - name: RAW_TRANSACTIONS # Table created by Snowflake Connector
-        description: "Raw transaction data ingested from minIO."
-        columns:
-          - name: RECORD_CONTENT # Assuming connector loads JSON into a VARIANT column
-            description: "Raw JSON payload from Kafka."
-            tests:
-              - not_null 
-          - name: RECORD_METADATA
-            description: "Metadata added by Snowflake Connector."
-
-      - name: RAW_EXCHANGE
-        description: "Exchange Rate data ingested from minIO."
-        columns:
-          - name: RECORD_CONTENT
-            description: "Raw JSON payload from minIO."
-            tests:
-              - not_null
+      - name: raw_transactions
+        description: "Raw transaction data ingested from MinIO."
+      - name: raw_economic_indicators
+        description: "Raw economic indicators data ingested from FRED API."

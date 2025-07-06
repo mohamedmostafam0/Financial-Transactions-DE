@@ -1,24 +1,10 @@
-# dbt/profiles.yml (Template - Use environment variables for production)
-finance_dbt_profile: # Matches profile name in dbt_project.yml
-  target: dev # Default target to use
+finance_dbt_profile:
+  target: dev
   outputs:
     dev:
-      type: snowflake
-      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}" # e.g., myorg-myaccount
-
-      # --- User/Password Auth ---
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
-
-      # --- OR Key Pair Auth (Recommended) ---
-      # user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-      # private_key_path: "{{ env_var('DBT_SNOWFLAKE_PRIVATE_KEY_PATH') }}" # Path inside container
-      # private_key_passphrase: "{{ env_var('DBT_SNOWFLAKE_PRIVATE_KEY_PASSPHRASE', '') }}" # Optional passphrase
-
-      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
-      database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}"
-      warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
-      schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA', 'DBT_DEV') }}" # Default schema for dbt runs
-      threads: 4 # Number of parallel threads dbt can use
-      client_session_keep_alive: False
-      # query_tag: dbt_run # Optional: Tag queries run by dbt
+      type: bigquery
+      method: service-account
+      project: sunlit-pixel-456910-j0
+      dataset: dbt_dev
+      threads: 4
+      keyfile: /home/mohamed-client/Documents/data-engineering/f/config/sunlit-pixel-456910-j0-58efdfa37d95.json

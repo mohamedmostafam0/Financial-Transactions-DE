@@ -1,0 +1,1273 @@
+[0m15:09:41.138352 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fb69030>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4e7f7ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4e537e50>]}
+
+
+============================== 15:09:41.163204 | 0ac59de4-6e52-47c0-bed7-04c324cb154e ==============================
+[0m15:09:41.163204 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:09:41.170704 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt deps', 'send_anonymous_usage_stats': 'True'}
+[0m15:09:42.114196 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0ac59de4-6e52-47c0-bed7-04c324cb154e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fa0ece0>]}
+[0m15:09:42.213701 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-zcf_30fy'
+[0m15:09:42.215561 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m15:09:42.797861 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m15:09:42.799816 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m15:09:43.100454 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m15:09:43.166141 [info ] [MainThread]: Updating lock file in file path: /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/package-lock.yml
+[0m15:09:43.181778 [debug] [MainThread]: Set downloads directory='/tmp/dbt-downloads-qbi3y28b'
+[0m15:09:43.192323 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m15:09:44.107917 [info ] [MainThread]: Installed from version 1.0.0
+[0m15:09:44.112862 [info ] [MainThread]: Updated version available: 1.3.0
+[0m15:09:44.118790 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': '0ac59de4-6e52-47c0-bed7-04c324cb154e', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fa08ca0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fa2d450>]}
+[0m15:09:44.129391 [info ] [MainThread]: 
+[0m15:09:44.130644 [info ] [MainThread]: Updates available for packages: ['dbt-labs/dbt_utils']                 
+Update your versions in packages.yml, then run dbt deps
+[0m15:09:44.139748 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 3.286022, "process_in_blocks": "78320", "process_kernel_time": 1.976484, "process_mem_max_rss": "96488", "process_out_blocks": "2192", "process_user_time": 5.01569}
+[0m15:09:44.143758 [debug] [MainThread]: Command `dbt deps` succeeded at 15:09:44.143285 after 3.29 seconds
+[0m15:09:44.150192 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fb69030>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4e4d78b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73ea4fa28610>]}
+[0m15:09:44.153545 [debug] [MainThread]: Flushing usage events
+[0m15:09:45.538204 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:10:06.660915 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea62dad150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea618ad8a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea618ae410>]}
+
+
+============================== 15:10:06.672705 | 420eaf85-463a-4b88-9d25-d3e3fdceb8ea ==============================
+[0m15:10:06.672705 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:10:06.748585 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt build', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m15:10:06.772149 [error] [MainThread]: Encountered an error:
+Parsing Error
+  Env var required but not provided: 'DBT_SNOWFLAKE_ACCOUNT'
+[0m15:10:06.782452 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 0.605367, "process_in_blocks": "8", "process_kernel_time": 0.934019, "process_mem_max_rss": "91776", "process_out_blocks": "8", "process_user_time": 5.612021}
+[0m15:10:06.792047 [debug] [MainThread]: Command `dbt build` failed at 15:10:06.791352 after 0.62 seconds
+[0m15:10:06.800190 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea62dad150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea618f2c20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76ea618f2560>]}
+[0m15:10:06.806155 [debug] [MainThread]: Flushing usage events
+[0m15:10:08.145518 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:18:43.968543 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392e14d090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392cb23e80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392cb23be0>]}
+
+
+============================== 15:18:43.975705 | 1545a762-0cb0-4134-a7d4-c0c81dba8bce ==============================
+[0m15:18:43.975705 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:18:43.977551 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'fail_fast': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt build', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m15:18:55.486677 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1545a762-0cb0-4134-a7d4-c0c81dba8bce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392d66a4a0>]}
+[0m15:18:55.739786 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1545a762-0cb0-4134-a7d4-c0c81dba8bce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392cbc1480>]}
+[0m15:18:55.742599 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:18:56.467591 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:18:56.470458 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:18:56.473521 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '1545a762-0cb0-4134-a7d4-c0c81dba8bce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392d5b1f60>]}
+[0m15:19:03.129681 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.finance_dbt.fraud_analysis_view' (models/marts/finance/fraud_analysis_view.sql) depends on a node named 'dim_users' which was not found
+[0m15:19:03.140719 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 19.35726, "process_in_blocks": "297512", "process_kernel_time": 3.555425, "process_mem_max_rss": "356812", "process_out_blocks": "32", "process_user_time": 14.180871}
+[0m15:19:03.142061 [debug] [MainThread]: Command `dbt build` failed at 15:19:03.141875 after 19.36 seconds
+[0m15:19:03.145412 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e392e14d090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e390c863a00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e390c863ca0>]}
+[0m15:19:03.149962 [debug] [MainThread]: Flushing usage events
+[0m15:19:04.238532 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:20:26.698651 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6b2290c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b69c3bc40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b69c3bdf0>]}
+
+
+============================== 15:20:26.705748 | b40a9e06-ae93-4b5d-a41a-da00851de1a9 ==============================
+[0m15:20:26.705748 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:20:26.708828 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'fail_fast': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt build', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m15:20:34.423448 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b40a9e06-ae93-4b5d-a41a-da00851de1a9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6aa62ec0>]}
+[0m15:20:34.648419 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b40a9e06-ae93-4b5d-a41a-da00851de1a9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6a9cfdc0>]}
+[0m15:20:34.650518 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:20:35.458323 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:20:35.462122 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:20:35.465992 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'b40a9e06-ae93-4b5d-a41a-da00851de1a9', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6a800b80>]}
+[0m15:20:41.805615 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.finance_dbt.fraud_analysis_view' (models/marts/finance/fraud_analysis_view.sql) depends on a node named 'dim_merchants' which was not found
+[0m15:20:41.809243 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 15.325594, "process_in_blocks": "152", "process_kernel_time": 1.874576, "process_mem_max_rss": "357472", "process_out_blocks": "32", "process_user_time": 14.683639}
+[0m15:20:41.811319 [debug] [MainThread]: Command `dbt build` failed at 15:20:41.810562 after 15.33 seconds
+[0m15:20:41.814580 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6b2290c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b6b9b3370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x787b69cbd930>]}
+[0m15:20:41.816461 [debug] [MainThread]: Flushing usage events
+[0m15:20:43.056865 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:21:27.093624 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a2529d060>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a25141a50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a23d2bbe0>]}
+
+
+============================== 15:21:27.105520 | a19b4e54-409a-4817-b969-90d22bce7a0f ==============================
+[0m15:21:27.105520 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:21:27.108821 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'version_check': 'True', 'debug': 'False', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'invocation_command': 'dbt build', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m15:21:34.581016 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'a19b4e54-409a-4817-b969-90d22bce7a0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a248bc2e0>]}
+[0m15:21:34.792554 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'a19b4e54-409a-4817-b969-90d22bce7a0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a24a1f6d0>]}
+[0m15:21:34.794859 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:21:35.482123 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:21:35.485002 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:21:35.486281 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'a19b4e54-409a-4817-b969-90d22bce7a0f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a09483d60>]}
+[0m15:21:42.000071 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.finance_dbt.fraud_analysis_view' (models/marts/finance/fraud_analysis_view.sql) depends on a node named 'fct_economic_indicators' which was not found
+[0m15:21:42.004645 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 15.139083, "process_in_blocks": "16", "process_kernel_time": 2.434205, "process_mem_max_rss": "357232", "process_out_blocks": "32", "process_user_time": 13.437268}
+[0m15:21:42.007062 [debug] [MainThread]: Command `dbt build` failed at 15:21:42.006662 after 15.14 seconds
+[0m15:21:42.009183 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a2529d060>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a246ed8a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x703a02f00c70>]}
+[0m15:21:42.011318 [debug] [MainThread]: Flushing usage events
+[0m15:21:43.198628 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:22:31.166847 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b63b10f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b5b33100>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b5b305e0>]}
+
+
+============================== 15:22:31.179993 | 34cb933e-fe7b-4e3e-8714-3e278463d273 ==============================
+[0m15:22:31.179993 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:22:31.191602 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'debug': 'False', 'warn_error': 'None', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'invocation_command': 'dbt build', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m15:22:38.792034 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b59aac80>]}
+[0m15:22:39.014450 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b4ec9960>]}
+[0m15:22:39.016670 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:22:39.949722 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:22:39.951939 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:22:39.959685 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d394f386d0>]}
+[0m15:22:47.324822 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.finance_dbt.relationships_stg_transactions_user_id__user_id__ref_stg_users_.7fcea8eb2e' (models/staging/_staging_schema.yml) depends on a node named 'stg_users' in package '' which was not found
+[0m15:22:47.721964 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.finance_dbt
+[0m15:22:47.774461 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d393f5c130>]}
+[0m15:22:48.309354 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:22:48.318109 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:22:48.404091 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d393f5e3e0>]}
+[0m15:22:48.406439 [info ] [MainThread]: Found 10 models, 32 data tests, 2 sources, 605 macros
+[0m15:22:48.426471 [info ] [MainThread]: 
+[0m15:22:48.429255 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:22:48.431646 [info ] [MainThread]: 
+[0m15:22:48.434270 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m15:22:48.455974 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:22:48.457859 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:22:48.460552 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:22:48.464588 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:22:50.526069 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now create_sunlit-pixel-456910-j0_dbt_dev_staging)
+[0m15:22:50.527791 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now create_sunlit-pixel-456910-j0_dbt_dev_analytics)
+[0m15:22:50.530130 [debug] [ThreadPool]: Creating schema "database: "sunlit-pixel-456910-j0"
+schema: "dbt_dev_staging"
+"
+[0m15:22:50.532090 [debug] [ThreadPool]: Creating schema "database: "sunlit-pixel-456910-j0"
+schema: "dbt_dev_analytics"
+"
+[0m15:22:50.567040 [debug] [ThreadPool]: On create_sunlit-pixel-456910-j0_dbt_dev_staging: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "connection_name": "create_sunlit-pixel-456910-j0_dbt_dev_staging"} */
+create schema if not exists `sunlit-pixel-456910-j0`.`dbt_dev_staging`
+  
+[0m15:22:50.571571 [debug] [ThreadPool]: On create_sunlit-pixel-456910-j0_dbt_dev_analytics: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "connection_name": "create_sunlit-pixel-456910-j0_dbt_dev_analytics"} */
+create schema if not exists `sunlit-pixel-456910-j0`.`dbt_dev_analytics`
+  
+[0m15:22:50.573678 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:22:50.576775 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:22:52.797351 [debug] [ThreadPool]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:7126faf1-25cc-423b-abca-d80c5f3604d1&page=queryresults
+[0m15:22:52.828097 [debug] [ThreadPool]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:97cf3789-b9c0-44af-a7d1-945421b05c0e&page=queryresults
+[0m15:22:53.985021 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_sunlit-pixel-456910-j0_dbt_dev_analytics, now list_sunlit-pixel-456910-j0_dbt_dev_staging)
+[0m15:22:53.987364 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:22:53.989319 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_sunlit-pixel-456910-j0_dbt_dev_staging, now list_sunlit-pixel-456910-j0_dbt_dev_analytics)
+[0m15:22:53.991849 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:22:55.638544 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b72177f0>]}
+[0m15:22:55.642759 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:22:55.775287 [debug] [Thread-1 (]: Began running node model.finance_dbt.dim_date
+[0m15:22:55.777309 [debug] [Thread-2 (]: Began running node model.finance_dbt.stg_economic_indicators
+[0m15:22:55.780421 [info ] [Thread-1 (]: 1 of 42 START sql table model dbt_dev_analytics.dim_date ....................... [RUN]
+[0m15:22:55.790528 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_staging, now model.finance_dbt.dim_date)
+[0m15:22:55.784135 [debug] [Thread-3 (]: Began running node model.finance_dbt.stg_transactions
+[0m15:22:55.786876 [info ] [Thread-2 (]: 2 of 42 START sql view model dbt_dev_staging.stg_economic_indicators ........... [RUN]
+[0m15:22:55.793190 [debug] [Thread-1 (]: Began compiling node model.finance_dbt.dim_date
+[0m15:22:55.801123 [info ] [Thread-3 (]: 3 of 42 START sql view model dbt_dev_staging.stg_transactions .................. [RUN]
+[0m15:22:55.803897 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_analytics, now model.finance_dbt.stg_economic_indicators)
+[0m15:22:55.822588 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.finance_dbt.stg_transactions'
+[0m15:22:55.858923 [debug] [Thread-3 (]: Began compiling node model.finance_dbt.stg_transactions
+[0m15:22:55.834816 [debug] [Thread-2 (]: Began compiling node model.finance_dbt.stg_economic_indicators
+[0m15:22:55.910179 [debug] [Thread-1 (]: On model.finance_dbt.dim_date: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.dim_date"} */
+
+
+        select 
+
+    datetime_diff(
+        cast(
+
+        datetime_add(
+            cast( current_date as datetime),
+        interval 1 year
+        )
+
+ as datetime),
+        cast(2020-01-01 as datetime),
+        
+    )
+
+  
+[0m15:22:55.927597 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:22:55.919465 [debug] [Thread-3 (]: Writing injected SQL for node "model.finance_dbt.stg_transactions"
+[0m15:22:55.923451 [debug] [Thread-2 (]: Writing injected SQL for node "model.finance_dbt.stg_economic_indicators"
+[0m15:22:55.934344 [debug] [Thread-2 (]: Began executing node model.finance_dbt.stg_economic_indicators
+[0m15:22:55.930207 [debug] [Thread-3 (]: Began executing node model.finance_dbt.stg_transactions
+[0m15:22:56.249441 [debug] [Thread-3 (]: Writing runtime sql for node "model.finance_dbt.stg_transactions"
+[0m15:22:56.262733 [debug] [Thread-2 (]: Writing runtime sql for node "model.finance_dbt.stg_economic_indicators"
+[0m15:22:56.267847 [debug] [Thread-3 (]: On model.finance_dbt.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_transactions"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_transactions`
+  OPTIONS()
+  as with source as (
+    select
+        record_content:transaction_id::string as transaction_id,
+        record_content:user_id::integer as user_id,
+        record_content:amount::decimal(18, 2) as amount,
+        record_content:currency::string as currency,
+
+        record_content:merchant_id::string as merchant_id,
+        record_content:merchant_name::string as merchant_name,
+        record_content:merchant_category::string as merchant_category,
+        record_content:card_type::string as card_type,
+
+        record_content:timestamp::timestamp_tz as transaction_timestamp_utc,
+        record_content:location_country::string as location_country,
+        record_content:location_city::string as location_city,
+        record_content:latitude::float as latitude,
+        record_content:longitude::float as longitude,
+
+        record_metadata:CreateTime::timestamp_tz as kafka_load_timestamp
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_transactions`
+),
+renamed as (
+    select
+        transaction_id,
+        user_id,
+        amount,
+        currency,
+
+        merchant_id,
+        merchant_name,
+        merchant_category,
+        card_type,
+
+        transaction_timestamp_utc as timestamp,
+        location_country,
+        location_city,
+        latitude,
+        longitude,
+        -- Add basic transformations if needed
+        convert_timezone('UTC', 'Africa/Cairo', transaction_timestamp_utc)::timestamp_ntz as transaction_timestamp_local, -- Example: Convert to local time
+        date(transaction_timestamp_utc) as transaction_date_utc
+        -- kafka_load_timestamp
+    where 
+        transaction_id is not null
+        and user_id between 1 and 10000
+        and amount >= 0.01 and amount <= 10000
+        and currency rlike '^[A-Z]{3}$'
+        and card_type in ('Visa', 'MasterCard', 'Amex', 'Discover', 'Other')
+        and location_country rlike '^[A-Z]{2}$'
+        and latitude between -90 and 90
+        and longitude between -180 and 180
+)
+
+select * from renamed_casted;
+
+
+[0m15:22:56.270462 [debug] [Thread-2 (]: On model.finance_dbt.stg_economic_indicators: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_economic_indicators"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_economic_indicators`
+  OPTIONS()
+  as -- models/staging/stg_economic_indicators.sql
+
+with source as (
+    select
+        record_content:indicator_id::string as indicator_id,
+        record_content:indicator_name::string as indicator_name,
+        record_content:value::float as value,
+        record_content:date::date as date,
+        record_content:country::string as country
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_economic_indicators`
+)
+
+select
+    indicator_id,
+    indicator_name,
+    value,
+    date,
+    country
+from source;
+
+
+[0m15:22:56.279229 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m15:22:56.283245 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m15:22:57.586358 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:c18861d9-d102-4bea-80ec-5117462530f6&page=queryresults
+[0m15:22:57.588934 [error] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:c18861d9-d102-4bea-80ec-5117462530f6&page=queryresults
+[0m15:22:57.613268 [debug] [Thread-3 (]: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Expected ")" but got ":" at [8:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:22:57.620369 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b669b5b0>]}
+[0m15:22:57.622597 [error] [Thread-3 (]: 3 of 42 ERROR creating sql view model dbt_dev_staging.stg_transactions ......... [[31mERROR[0m in 1.79s]
+[0m15:22:57.626199 [debug] [Thread-3 (]: Finished running node model.finance_dbt.stg_transactions
+[0m15:22:57.630718 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_transactions' to be skipped because of status 'error'.  Reason: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Expected ")" but got ":" at [8:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql.
+[0m15:22:57.636959 [debug] [Thread-4 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:22:57.641478 [info ] [Thread-4 (]: 4 of 42 SKIP test accepted_values_stg_transactions_currency__USD__EUR__GBP ..... [[33mSKIP[0m]
+[0m15:22:57.639051 [debug] [Thread-3 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:22:57.644423 [info ] [Thread-3 (]: 5 of 42 SKIP test accepted_values_stg_transactions_is_fraud__True__False ....... [[33mSKIP[0m]
+[0m15:22:57.643133 [debug] [Thread-4 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:22:57.648425 [debug] [Thread-4 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:22:57.645864 [debug] [Thread-3 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:22:57.652323 [debug] [Thread-3 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:22:57.653634 [info ] [Thread-3 (]: 7 of 42 SKIP test dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False  [[33mSKIP[0m]
+[0m15:22:57.651111 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef' to be skipped because of status 'skipped'. 
+[0m15:22:57.656364 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031' to be skipped because of status 'skipped'. 
+[0m15:22:57.649577 [info ] [Thread-4 (]: 6 of 42 SKIP test dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2  [[33mSKIP[0m]
+[0m15:22:57.657655 [debug] [Thread-4 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:22:57.658723 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:22:57.662067 [info ] [Thread-4 (]: 8 of 42 SKIP test not_null_stg_transactions_amount ............................. [[33mSKIP[0m]
+[0m15:22:57.663459 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:22:57.660308 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97' to be skipped because of status 'skipped'. 
+[0m15:22:57.654781 [debug] [Thread-3 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:22:57.671330 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:22:57.669019 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_amount.3629b5421e' to be skipped because of status 'skipped'. 
+[0m15:22:57.666925 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:22:57.680884 [info ] [Thread-4 (]: 9 of 42 SKIP test not_null_stg_transactions_currency ........................... [[33mSKIP[0m]
+[0m15:22:57.679587 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc' to be skipped because of status 'skipped'. 
+[0m15:22:57.676592 [info ] [Thread-3 (]: 10 of 42 SKIP test not_null_stg_transactions_is_fraud .......................... [[33mSKIP[0m]
+[0m15:22:57.686777 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:22:57.687580 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:22:57.682061 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:22:57.688663 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395' to be skipped because of status 'skipped'. 
+[0m15:22:57.692422 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:22:57.690196 [info ] [Thread-3 (]: 11 of 42 SKIP test not_null_stg_transactions_location_code ..................... [[33mSKIP[0m]
+[0m15:22:57.699491 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d' to be skipped because of status 'skipped'. 
+[0m15:22:57.702095 [info ] [Thread-4 (]: 12 of 42 SKIP test not_null_stg_transactions_merchant .......................... [[33mSKIP[0m]
+[0m15:22:57.713206 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:22:57.714824 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:22:57.708263 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:22:57.716393 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e' to be skipped because of status 'skipped'. 
+[0m15:22:57.720371 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:22:57.717926 [info ] [Thread-4 (]: 13 of 42 SKIP test not_null_stg_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:22:57.723784 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b' to be skipped because of status 'skipped'. 
+[0m15:22:57.728013 [info ] [Thread-3 (]: 14 of 42 SKIP test not_null_stg_transactions_transaction_timestamp_utc ......... [[33mSKIP[0m]
+[0m15:22:57.733095 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:22:57.734706 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:22:57.742610 [info ] [Thread-3 (]: 15 of 42 SKIP test not_null_stg_transactions_user_id ........................... [[33mSKIP[0m]
+[0m15:22:57.730718 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:22:57.739374 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:69254cba-ab25-42ac-aa03-7145f353a43c&page=queryresults
+[0m15:22:57.736089 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da' to be skipped because of status 'skipped'. 
+[0m15:22:57.752248 [debug] [Thread-4 (]: Began running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:22:57.745747 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:22:57.760342 [info ] [Thread-4 (]: 16 of 42 SKIP test unique_stg_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:22:57.754336 [error] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:69254cba-ab25-42ac-aa03-7145f353a43c&page=queryresults
+[0m15:22:57.758114 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4' to be skipped because of status 'skipped'. 
+[0m15:22:57.764913 [debug] [Thread-4 (]: Finished running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:22:57.768369 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_user_id.b541614306' to be skipped because of status 'skipped'. 
+[0m15:22:57.775068 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396' to be skipped because of status 'skipped'. 
+[0m15:22:57.779255 [debug] [Thread-2 (]: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Syntax error: Expected ")" but got ":" at [10:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:22:57.784272 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d392802b60>]}
+[0m15:22:57.785871 [debug] [Thread-3 (]: Began running node model.finance_dbt.dim_location
+[0m15:22:57.787461 [debug] [Thread-4 (]: Began running node model.finance_dbt.dim_merchants
+[0m15:22:57.791466 [error] [Thread-2 (]: 2 of 42 ERROR creating sql view model dbt_dev_staging.stg_economic_indicators .. [[31mERROR[0m in 1.98s]
+[0m15:22:57.793661 [info ] [Thread-3 (]: 17 of 42 SKIP relation dbt_dev_analytics.dim_location .......................... [[33mSKIP[0m]
+[0m15:22:57.799535 [debug] [Thread-3 (]: Finished running node model.finance_dbt.dim_location
+[0m15:22:57.797800 [debug] [Thread-2 (]: Finished running node model.finance_dbt.stg_economic_indicators
+[0m15:22:57.795380 [info ] [Thread-4 (]: 18 of 42 SKIP relation dbt_dev_analytics.dim_merchants ......................... [[33mSKIP[0m]
+[0m15:22:57.806227 [debug] [Thread-4 (]: Finished running node model.finance_dbt.dim_merchants
+[0m15:22:57.800558 [debug] [Thread-3 (]: Began running node model.finance_dbt.dim_users
+[0m15:22:57.807196 [info ] [Thread-3 (]: 19 of 42 SKIP relation dbt_dev_analytics.dim_users ............................. [[33mSKIP[0m]
+[0m15:22:57.804948 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_location' to be skipped because of status 'skipped'. 
+[0m15:22:57.808439 [debug] [Thread-3 (]: Finished running node model.finance_dbt.dim_users
+[0m15:22:57.810116 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_economic_indicators' to be skipped because of status 'error'.  Reason: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Syntax error: Expected ")" but got ":" at [10:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql.
+[0m15:22:57.811149 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:22:57.812593 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_merchants' to be skipped because of status 'skipped'. 
+[0m15:22:57.814880 [debug] [Thread-4 (]: Began running node model.finance_dbt.fct_economic_indicators
+[0m15:22:57.819305 [info ] [Thread-4 (]: 21 of 42 SKIP relation dbt_dev_analytics.fct_economic_indicators ............... [[33mSKIP[0m]
+[0m15:22:57.817507 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_users' to be skipped because of status 'skipped'. 
+[0m15:22:57.813731 [info ] [Thread-3 (]: 20 of 42 SKIP test not_null_dim_location_country ............................... [[33mSKIP[0m]
+[0m15:22:57.820658 [debug] [Thread-2 (]: Began running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:22:57.824388 [debug] [Thread-4 (]: Finished running node model.finance_dbt.fct_economic_indicators
+[0m15:22:57.834963 [debug] [Thread-4 (]: Began running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:22:57.828627 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:22:57.843180 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:22:57.832713 [info ] [Thread-2 (]: 22 of 42 SKIP test not_null_dim_merchants_merchant_id .......................... [[33mSKIP[0m]
+[0m15:22:57.841572 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_economic_indicators' to be skipped because of status 'skipped'. 
+[0m15:22:57.837011 [info ] [Thread-4 (]: 23 of 42 SKIP test unique_dim_merchants_merchant_id ............................ [[33mSKIP[0m]
+[0m15:22:57.851448 [debug] [Thread-4 (]: Finished running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:22:57.848739 [debug] [Thread-2 (]: Finished running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:22:57.850151 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_location_country.a3161a472e' to be skipped because of status 'skipped'. 
+[0m15:22:57.845047 [info ] [Thread-3 (]: 24 of 42 SKIP test not_null_dim_users_user_id .................................. [[33mSKIP[0m]
+[0m15:22:57.858065 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:22:57.852979 [debug] [Thread-4 (]: Began running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:22:57.859443 [info ] [Thread-4 (]: 25 of 42 SKIP test unique_dim_users_user_id .................................... [[33mSKIP[0m]
+[0m15:22:57.861086 [debug] [Thread-4 (]: Finished running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:22:57.856170 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97' to be skipped because of status 'skipped'. 
+[0m15:22:57.865940 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6' to be skipped because of status 'skipped'. 
+[0m15:22:57.871015 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_users_user_id.e754bb5812' to be skipped because of status 'skipped'. 
+[0m15:22:57.872545 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9' to be skipped because of status 'skipped'. 
+[0m15:22:58.025506 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:6167eb51-88b4-44ab-9e4e-e63b17726e19&page=queryresults
+[0m15:22:58.027356 [error] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:6167eb51-88b4-44ab-9e4e-e63b17726e19&page=queryresults
+[0m15:22:58.048794 [debug] [Thread-1 (]: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5]
+[0m15:22:58.051836 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '34cb933e-fe7b-4e3e-8714-3e278463d273', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d392800c40>]}
+[0m15:22:58.054261 [error] [Thread-1 (]: 1 of 42 ERROR creating sql table model dbt_dev_analytics.dim_date .............. [[31mERROR[0m in 2.26s]
+[0m15:22:58.059587 [debug] [Thread-1 (]: Finished running node model.finance_dbt.dim_date
+[0m15:22:58.061707 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_date' to be skipped because of status 'error'.  Reason: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5].
+[0m15:22:58.068063 [debug] [Thread-2 (]: Began running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:22:58.072226 [info ] [Thread-2 (]: 26 of 42 SKIP test not_null_dim_date_date_id ................................... [[33mSKIP[0m]
+[0m15:22:58.069869 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:22:58.074092 [debug] [Thread-2 (]: Finished running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:22:58.079672 [info ] [Thread-3 (]: 27 of 42 SKIP test unique_dim_date_date_id ..................................... [[33mSKIP[0m]
+[0m15:22:58.084425 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:22:58.091778 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_date_date_id.3077875806' to be skipped because of status 'skipped'. 
+[0m15:22:58.104012 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_date_date_id.7286dcb90d' to be skipped because of status 'skipped'. 
+[0m15:22:58.109393 [debug] [Thread-1 (]: Began running node model.finance_dbt.fct_transactions
+[0m15:22:58.115762 [info ] [Thread-1 (]: 28 of 42 SKIP relation dbt_dev_analytics.fct_transactions ...................... [[33mSKIP[0m]
+[0m15:22:58.121833 [debug] [Thread-1 (]: Finished running node model.finance_dbt.fct_transactions
+[0m15:22:58.123368 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_transactions' to be skipped because of status 'skipped'. 
+[0m15:22:58.132192 [debug] [Thread-2 (]: Began running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:22:58.133461 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:22:58.141108 [info ] [Thread-3 (]: 30 of 42 SKIP test not_null_fct_transactions_currency .......................... [[33mSKIP[0m]
+[0m15:22:58.147291 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:22:58.148844 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:22:58.134825 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:22:58.136467 [info ] [Thread-2 (]: 29 of 42 SKIP test not_null_fct_transactions_amount ............................ [[33mSKIP[0m]
+[0m15:22:58.142437 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:22:58.156598 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_currency.b848da04ca' to be skipped because of status 'skipped'. 
+[0m15:22:58.158056 [debug] [Thread-2 (]: Finished running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:22:58.153425 [info ] [Thread-3 (]: 33 of 42 SKIP test not_null_fct_transactions_merchant_key ...................... [[33mSKIP[0m]
+[0m15:22:58.185503 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:22:58.175476 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_amount.1d3624d981' to be skipped because of status 'skipped'. 
+[0m15:22:58.155158 [info ] [Thread-4 (]: 31 of 42 SKIP test not_null_fct_transactions_date_key .......................... [[33mSKIP[0m]
+[0m15:22:58.168030 [debug] [Thread-2 (]: Began running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:22:58.161308 [info ] [Thread-1 (]: 32 of 42 SKIP test not_null_fct_transactions_location_key ...................... [[33mSKIP[0m]
+[0m15:22:58.198960 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:22:58.192354 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e' to be skipped because of status 'skipped'. 
+[0m15:22:58.204899 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596' to be skipped because of status 'skipped'. 
+[0m15:22:58.194494 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:22:58.196270 [info ] [Thread-2 (]: 34 of 42 SKIP test not_null_fct_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:22:58.202243 [debug] [Thread-1 (]: Began running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:22:58.212989 [info ] [Thread-1 (]: 36 of 42 SKIP test relationships_fct_transactions_date_key__date_id__ref_dim_date_  [[33mSKIP[0m]
+[0m15:22:58.189931 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:22:58.208691 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_date_key.9128617606' to be skipped because of status 'skipped'. 
+[0m15:22:58.211052 [debug] [Thread-2 (]: Finished running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:22:58.207341 [debug] [Thread-4 (]: Began running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:22:58.214495 [debug] [Thread-1 (]: Finished running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:22:58.215740 [info ] [Thread-3 (]: 35 of 42 SKIP test not_null_fct_transactions_user_key .......................... [[33mSKIP[0m]
+[0m15:22:58.231892 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:22:58.232953 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:22:58.219960 [debug] [Thread-2 (]: Began running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:22:58.226725 [debug] [Thread-1 (]: Began running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:22:58.248601 [info ] [Thread-1 (]: 39 of 42 SKIP test relationships_fct_transactions_user_key__user_id__ref_dim_users_  [[33mSKIP[0m]
+[0m15:22:58.224407 [info ] [Thread-4 (]: 37 of 42 SKIP test relationships_fct_transactions_location_key__country__ref_dim_location_  [[33mSKIP[0m]
+[0m15:22:58.255141 [debug] [Thread-4 (]: Finished running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:22:58.241292 [info ] [Thread-2 (]: 38 of 42 SKIP test relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_  [[33mSKIP[0m]
+[0m15:22:58.221605 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa' to be skipped because of status 'skipped'. 
+[0m15:22:58.259269 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5' to be skipped because of status 'skipped'. 
+[0m15:22:58.250334 [debug] [Thread-1 (]: Finished running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:22:58.261749 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db' to be skipped because of status 'skipped'. 
+[0m15:22:58.246251 [info ] [Thread-3 (]: 40 of 42 SKIP test unique_fct_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:22:58.267270 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8' to be skipped because of status 'skipped'. 
+[0m15:22:58.257049 [debug] [Thread-2 (]: Finished running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:22:58.270654 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:22:58.271902 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed' to be skipped because of status 'skipped'. 
+[0m15:22:58.273628 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df' to be skipped because of status 'skipped'. 
+[0m15:22:58.275847 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53' to be skipped because of status 'skipped'. 
+[0m15:22:58.283032 [debug] [Thread-4 (]: Began running node model.finance_dbt.fraud_analysis_view
+[0m15:22:58.285771 [info ] [Thread-4 (]: 41 of 42 SKIP relation dbt_dev_analytics.fraud_analysis_view ................... [[33mSKIP[0m]
+[0m15:22:58.286991 [debug] [Thread-4 (]: Finished running node model.finance_dbt.fraud_analysis_view
+[0m15:22:58.288497 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fraud_analysis_view' to be skipped because of status 'skipped'. 
+[0m15:22:58.291844 [debug] [Thread-2 (]: Began running node model.finance_dbt.ml_features_view
+[0m15:22:58.293177 [info ] [Thread-2 (]: 42 of 42 SKIP relation dbt_dev_analytics.ml_features_view ...................... [[33mSKIP[0m]
+[0m15:22:58.298151 [debug] [Thread-2 (]: Finished running node model.finance_dbt.ml_features_view
+[0m15:22:58.301084 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.ml_features_view' to be skipped because of status 'skipped'. 
+[0m15:22:58.307751 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:22:58.428198 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:22:58.429926 [debug] [MainThread]: Connection 'model.finance_dbt.dim_date' was properly closed.
+[0m15:22:58.432080 [debug] [MainThread]: Connection 'model.finance_dbt.stg_economic_indicators' was properly closed.
+[0m15:22:58.433629 [debug] [MainThread]: Connection 'model.finance_dbt.stg_transactions' was properly closed.
+[0m15:22:58.435812 [info ] [MainThread]: 
+[0m15:22:58.437777 [info ] [MainThread]: Finished running 6 table models, 32 data tests, 4 view models in 0 hours 0 minutes and 10.00 seconds (10.00s).
+[0m15:22:58.463301 [debug] [MainThread]: Command end result
+[0m15:22:58.644974 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:22:58.653597 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:22:58.670879 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/run_results.json
+[0m15:22:58.672417 [info ] [MainThread]: 
+[0m15:22:58.673315 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:22:58.674266 [info ] [MainThread]: 
+[0m15:22:58.675322 [error] [MainThread]: [31mFailure in model stg_transactions (models/staging/stg_transactions.sql)[0m
+[0m15:22:58.675935 [error] [MainThread]:   Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Expected ")" but got ":" at [8:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:22:58.677723 [info ] [MainThread]: 
+[0m15:22:58.679611 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_transactions.sql
+[0m15:22:58.681351 [info ] [MainThread]: 
+[0m15:22:58.687365 [error] [MainThread]: [31mFailure in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)[0m
+[0m15:22:58.691058 [error] [MainThread]:   Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Syntax error: Expected ")" but got ":" at [10:23]
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:22:58.692720 [info ] [MainThread]: 
+[0m15:22:58.694820 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:22:58.696836 [info ] [MainThread]: 
+[0m15:22:58.698941 [error] [MainThread]: [31mFailure in model dim_date (models/marts/finance/dim_date.sql)[0m
+[0m15:22:58.701082 [error] [MainThread]:   Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5]
+[0m15:22:58.702571 [info ] [MainThread]: 
+[0m15:22:58.704365 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=39 NO-OP=0 TOTAL=42
+[0m15:22:58.708113 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 27.896307, "process_in_blocks": "4792", "process_kernel_time": 3.743207, "process_mem_max_rss": "374052", "process_out_blocks": "4592", "process_user_time": 18.112106}
+[0m15:22:58.710821 [debug] [MainThread]: Command `dbt build` failed at 15:22:58.710314 after 27.90 seconds
+[0m15:22:58.712471 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b63b10f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d3b59aac80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72d393f1c580>]}
+[0m15:22:58.713844 [debug] [MainThread]: Flushing usage events
+[0m15:22:59.798519 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:24:31.291395 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c810385120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c80eeba3e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c80eeb9fc0>]}
+
+
+============================== 15:24:31.303963 | 198ef3e1-1265-4c25-855b-64352383b3ce ==============================
+[0m15:24:31.303963 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:24:31.306802 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt build', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True'}
+[0m15:24:41.383266 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7f85a59f0>]}
+[0m15:24:41.647992 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c80eed99c0>]}
+[0m15:24:41.652896 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:24:42.447372 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:24:43.126137 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 3 files changed.
+[0m15:24:43.130000 [debug] [MainThread]: Partial parsing: updated file: finance_dbt://models/staging/stg_economic_indicators.sql
+[0m15:24:43.133181 [debug] [MainThread]: Partial parsing: updated file: finance_dbt://models/marts/finance/dim_date.sql
+[0m15:24:43.135237 [debug] [MainThread]: Partial parsing: updated file: finance_dbt://models/staging/stg_transactions.sql
+[0m15:24:45.546935 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.finance_dbt.relationships_stg_transactions_user_id__user_id__ref_stg_users_.7fcea8eb2e' (models/staging/_staging_schema.yml) depends on a node named 'stg_users' in package '' which was not found
+[0m15:24:45.833615 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.finance_dbt
+[0m15:24:45.891548 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7edf62020>]}
+[0m15:24:46.380533 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:24:46.401401 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:24:46.511151 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7edf34880>]}
+[0m15:24:46.513929 [info ] [MainThread]: Found 10 models, 32 data tests, 2 sources, 605 macros
+[0m15:24:46.530165 [info ] [MainThread]: 
+[0m15:24:46.532509 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:24:46.535382 [info ] [MainThread]: 
+[0m15:24:46.539487 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m15:24:46.577763 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:24:46.582925 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:24:46.585126 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:24:46.587256 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:24:48.544090 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now list_sunlit-pixel-456910-j0_dbt_dev_staging)
+[0m15:24:48.545832 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:24:48.551954 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now list_sunlit-pixel-456910-j0_dbt_dev_analytics)
+[0m15:24:48.557502 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:24:50.611641 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7eec80430>]}
+[0m15:24:50.619582 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:24:50.994111 [debug] [Thread-1 (]: Began running node model.finance_dbt.dim_date
+[0m15:24:51.001778 [debug] [Thread-2 (]: Began running node model.finance_dbt.stg_economic_indicators
+[0m15:24:51.000132 [info ] [Thread-1 (]: 1 of 42 START sql table model dbt_dev_analytics.dim_date ....................... [RUN]
+[0m15:24:51.003920 [info ] [Thread-2 (]: 2 of 42 START sql view model dbt_dev_staging.stg_economic_indicators ........... [RUN]
+[0m15:24:51.013008 [debug] [Thread-3 (]: Began running node model.finance_dbt.stg_transactions
+[0m15:24:51.015267 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_staging, now model.finance_dbt.dim_date)
+[0m15:24:51.018258 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_analytics, now model.finance_dbt.stg_economic_indicators)
+[0m15:24:51.023675 [info ] [Thread-3 (]: 3 of 42 START sql view model dbt_dev_staging.stg_transactions .................. [RUN]
+[0m15:24:51.028438 [debug] [Thread-1 (]: Began compiling node model.finance_dbt.dim_date
+[0m15:24:51.030777 [debug] [Thread-2 (]: Began compiling node model.finance_dbt.stg_economic_indicators
+[0m15:24:51.037587 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.finance_dbt.stg_transactions'
+[0m15:24:51.085524 [debug] [Thread-3 (]: Began compiling node model.finance_dbt.stg_transactions
+[0m15:24:51.109520 [debug] [Thread-2 (]: Writing injected SQL for node "model.finance_dbt.stg_economic_indicators"
+[0m15:24:51.178696 [debug] [Thread-1 (]: On model.finance_dbt.dim_date: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.dim_date"} */
+
+
+        select 
+
+    datetime_diff(
+        cast(
+
+        datetime_add(
+            cast( current_date as datetime),
+        interval 1 year
+        )
+
+ as datetime),
+        cast(2020-01-01 as datetime),
+        
+    )
+
+  
+[0m15:24:51.187751 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:24:51.167061 [debug] [Thread-3 (]: Writing injected SQL for node "model.finance_dbt.stg_transactions"
+[0m15:24:51.190786 [debug] [Thread-2 (]: Began executing node model.finance_dbt.stg_economic_indicators
+[0m15:24:51.209323 [debug] [Thread-3 (]: Began executing node model.finance_dbt.stg_transactions
+[0m15:24:51.519766 [debug] [Thread-2 (]: Writing runtime sql for node "model.finance_dbt.stg_economic_indicators"
+[0m15:24:51.522781 [debug] [Thread-3 (]: Writing runtime sql for node "model.finance_dbt.stg_transactions"
+[0m15:24:51.535500 [debug] [Thread-2 (]: On model.finance_dbt.stg_economic_indicators: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_economic_indicators"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_economic_indicators`
+  OPTIONS()
+  as -- models/staging/stg_economic_indicators.sql
+
+with source as (
+    select
+        cast(json_extract_scalar(record_content, '$.indicator_id') as string) as indicator_id,
+        cast(json_extract_scalar(record_content, '$.indicator_name') as string) as indicator_name,
+        cast(json_extract_scalar(record_content, '$.value') as float64) as value,
+        cast(json_extract_scalar(record_content, '$.date') as date) as date,
+        cast(json_extract_scalar(record_content, '$.country') as string) as country
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_economic_indicators`
+)
+
+select
+    indicator_id,
+    indicator_name,
+    value,
+    date,
+    country
+from source;
+
+
+[0m15:24:51.531434 [debug] [Thread-3 (]: On model.finance_dbt.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_transactions"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_transactions`
+  OPTIONS()
+  as with source as (
+    select
+        cast(json_extract_scalar(record_content, '$.transaction_id') as string) as transaction_id,
+        cast(json_extract_scalar(record_content, '$.user_id') as int64) as user_id,
+        cast(json_extract_scalar(record_content, '$.amount') as numeric) as amount,
+        cast(json_extract_scalar(record_content, '$.currency') as string) as currency,
+        cast(json_extract_scalar(record_content, '$.merchant_id') as string) as merchant_id,
+        cast(json_extract_scalar(record_content, '$.merchant_name') as string) as merchant_name,
+        cast(json_extract_scalar(record_content, '$.merchant_category') as string) as merchant_category,
+        cast(json_extract_scalar(record_content, '$.card_type') as string) as card_type,
+        cast(json_extract_scalar(record_content, '$.timestamp') as timestamp) as transaction_timestamp_utc,
+        cast(json_extract_scalar(record_content, '$.location_country') as string) as location_country,
+        cast(json_extract_scalar(record_content, '$.location_city') as string) as location_city,
+        cast(json_extract_scalar(record_content, '$.latitude') as float64) as latitude,
+        cast(json_extract_scalar(record_content, '$.longitude') as float64) as longitude,
+        cast(json_extract_scalar(record_metadata, '$.CreateTime') as timestamp) as kafka_load_timestamp
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_transactions`
+),
+renamed as (
+    select
+        transaction_id,
+        user_id,
+        amount,
+        currency,
+        merchant_id,
+        merchant_name,
+        merchant_category,
+        card_type,
+        transaction_timestamp_utc as timestamp,
+        location_country,
+        location_city,
+        latitude,
+        longitude,
+        datetime(transaction_timestamp_utc, 'Africa/Cairo') as transaction_timestamp_local,
+        date(transaction_timestamp_utc) as transaction_date_utc
+    from source
+    where 
+        transaction_id is not null
+        and user_id between 1 and 10000
+        and amount >= 0.01 and amount <= 10000
+        and regexp_contains(currency, r'^[A-Z]{3})
+        and card_type in ('Visa', 'MasterCard', 'Amex', 'Discover', 'Other')
+        and regexp_contains(location_country, r'^[A-Z]{2})
+        and latitude between -90 and 90
+        and longitude between -180 and 180
+)
+
+select * from renamed;
+
+
+[0m15:24:51.543860 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m15:24:51.540851 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m15:24:52.688490 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:6cc6d3a6-9184-4ba2-aef0-4a6f4d2d8896&page=queryresults
+[0m15:24:52.700840 [error] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:6cc6d3a6-9184-4ba2-aef0-4a6f4d2d8896&page=queryresults
+[0m15:24:52.752106 [debug] [Thread-1 (]: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5]
+[0m15:24:52.778155 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c810673670>]}
+[0m15:24:52.785413 [error] [Thread-1 (]: 1 of 42 ERROR creating sql table model dbt_dev_analytics.dim_date .............. [[31mERROR[0m in 1.75s]
+[0m15:24:52.794104 [debug] [Thread-1 (]: Finished running node model.finance_dbt.dim_date
+[0m15:24:52.799318 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_date' to be skipped because of status 'error'.  Reason: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5].
+[0m15:24:52.804790 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:24:52.812935 [debug] [Thread-1 (]: Began running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:24:52.812190 [info ] [Thread-4 (]: 4 of 42 SKIP test not_null_dim_date_date_id .................................... [[33mSKIP[0m]
+[0m15:24:52.817311 [info ] [Thread-1 (]: 5 of 42 SKIP test unique_dim_date_date_id ...................................... [[33mSKIP[0m]
+[0m15:24:52.819418 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:24:52.823717 [debug] [Thread-1 (]: Finished running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:24:52.826398 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_date_date_id.3077875806' to be skipped because of status 'skipped'. 
+[0m15:24:52.832423 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_date_date_id.7286dcb90d' to be skipped because of status 'skipped'. 
+[0m15:24:53.166074 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:10241982-e84b-4620-af18-06439862c419&page=queryresults
+[0m15:24:53.175201 [error] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:10241982-e84b-4620-af18-06439862c419&page=queryresults
+[0m15:24:53.192867 [debug] [Thread-3 (]: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:24:53.202451 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7ecdc77c0>]}
+[0m15:24:53.208577 [error] [Thread-3 (]: 3 of 42 ERROR creating sql view model dbt_dev_staging.stg_transactions ......... [[31mERROR[0m in 2.16s]
+[0m15:24:53.217279 [debug] [Thread-3 (]: Finished running node model.finance_dbt.stg_transactions
+[0m15:24:53.220656 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_transactions' to be skipped because of status 'error'.  Reason: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql.
+[0m15:24:53.225172 [debug] [Thread-4 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:24:53.229200 [info ] [Thread-4 (]: 6 of 42 SKIP test accepted_values_stg_transactions_currency__USD__EUR__GBP ..... [[33mSKIP[0m]
+[0m15:24:53.231221 [debug] [Thread-1 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:24:53.233079 [debug] [Thread-3 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:24:53.242439 [info ] [Thread-3 (]: 8 of 42 SKIP test dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2  [[33mSKIP[0m]
+[0m15:24:53.238417 [debug] [Thread-4 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:24:53.240516 [info ] [Thread-1 (]: 7 of 42 SKIP test accepted_values_stg_transactions_is_fraud__True__False ....... [[33mSKIP[0m]
+[0m15:24:53.244387 [debug] [Thread-3 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:24:53.252687 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:24:53.250548 [debug] [Thread-1 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:24:53.247518 [debug] [Thread-4 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:24:53.254564 [info ] [Thread-3 (]: 10 of 42 SKIP test not_null_stg_transactions_amount ............................ [[33mSKIP[0m]
+[0m15:24:53.256639 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef' to be skipped because of status 'skipped'. 
+[0m15:24:53.266267 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:24:53.271563 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97' to be skipped because of status 'skipped'. 
+[0m15:24:53.259012 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:24:53.284592 [info ] [Thread-1 (]: 11 of 42 SKIP test not_null_stg_transactions_currency .......................... [[33mSKIP[0m]
+[0m15:24:53.261413 [info ] [Thread-4 (]: 9 of 42 SKIP test dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False  [[33mSKIP[0m]
+[0m15:24:53.294061 [debug] [Thread-4 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:24:53.298256 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:24:53.273488 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:24:53.277954 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031' to be skipped because of status 'skipped'. 
+[0m15:24:53.290753 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:24:53.305351 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_amount.3629b5421e' to be skipped because of status 'skipped'. 
+[0m15:24:53.301682 [info ] [Thread-4 (]: 13 of 42 SKIP test not_null_stg_transactions_location_code ..................... [[33mSKIP[0m]
+[0m15:24:53.303964 [info ] [Thread-3 (]: 12 of 42 SKIP test not_null_stg_transactions_is_fraud .......................... [[33mSKIP[0m]
+[0m15:24:53.327863 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc' to be skipped because of status 'skipped'. 
+[0m15:24:53.331439 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:24:53.337385 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:24:53.333535 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:24:53.354391 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:24:53.348353 [info ] [Thread-1 (]: 14 of 42 SKIP test not_null_stg_transactions_merchant .......................... [[33mSKIP[0m]
+[0m15:24:53.350831 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:24:53.343372 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d' to be skipped because of status 'skipped'. 
+[0m15:24:53.367445 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395' to be skipped because of status 'skipped'. 
+[0m15:24:53.361471 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:24:53.356083 [info ] [Thread-4 (]: 16 of 42 SKIP test not_null_stg_transactions_transaction_timestamp_utc ......... [[33mSKIP[0m]
+[0m15:24:53.370668 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b' to be skipped because of status 'skipped'. 
+[0m15:24:53.378021 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e' to be skipped because of status 'skipped'. 
+[0m15:24:53.364285 [info ] [Thread-3 (]: 15 of 42 SKIP test not_null_stg_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:24:53.373684 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:24:53.380701 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:24:53.388751 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:24:53.375786 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:24:53.383334 [info ] [Thread-1 (]: 17 of 42 SKIP test not_null_stg_transactions_user_id ........................... [[33mSKIP[0m]
+[0m15:24:53.390607 [info ] [Thread-3 (]: 18 of 42 SKIP test unique_stg_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:24:53.397567 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:24:53.392125 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4' to be skipped because of status 'skipped'. 
+[0m15:24:53.395229 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:24:53.400449 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da' to be skipped because of status 'skipped'. 
+[0m15:24:53.406353 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396' to be skipped because of status 'skipped'. 
+[0m15:24:53.408079 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_user_id.b541614306' to be skipped because of status 'skipped'. 
+[0m15:24:53.412662 [debug] [Thread-4 (]: Began running node model.finance_dbt.dim_location
+[0m15:24:53.414508 [info ] [Thread-4 (]: 19 of 42 SKIP relation dbt_dev_analytics.dim_location .......................... [[33mSKIP[0m]
+[0m15:24:53.419495 [debug] [Thread-3 (]: Began running node model.finance_dbt.dim_merchants
+[0m15:24:53.421776 [debug] [Thread-1 (]: Began running node model.finance_dbt.dim_users
+[0m15:24:53.425027 [debug] [Thread-4 (]: Finished running node model.finance_dbt.dim_location
+[0m15:24:53.441442 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_location' to be skipped because of status 'skipped'. 
+[0m15:24:53.432121 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:3ef1aeef-d58d-4575-8f54-0ad84963102f&page=queryresults
+[0m15:24:53.453876 [error] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:3ef1aeef-d58d-4575-8f54-0ad84963102f&page=queryresults
+[0m15:24:53.439733 [info ] [Thread-1 (]: 21 of 42 SKIP relation dbt_dev_analytics.dim_users ............................. [[33mSKIP[0m]
+[0m15:24:53.451787 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:24:53.436360 [info ] [Thread-3 (]: 20 of 42 SKIP relation dbt_dev_analytics.dim_merchants ......................... [[33mSKIP[0m]
+[0m15:24:53.461070 [debug] [Thread-1 (]: Finished running node model.finance_dbt.dim_users
+[0m15:24:53.465121 [debug] [Thread-2 (]: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:24:53.472524 [info ] [Thread-4 (]: 22 of 42 SKIP test not_null_dim_location_country ............................... [[33mSKIP[0m]
+[0m15:24:53.480019 [debug] [Thread-3 (]: Finished running node model.finance_dbt.dim_merchants
+[0m15:24:53.482077 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_users' to be skipped because of status 'skipped'. 
+[0m15:24:53.493889 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_merchants' to be skipped because of status 'skipped'. 
+[0m15:24:53.484134 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '198ef3e1-1265-4c25-855b-64352383b3ce', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c7edf2d540>]}
+[0m15:24:53.490452 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:24:53.502356 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:24:53.497054 [error] [Thread-2 (]: 2 of 42 ERROR creating sql view model dbt_dev_staging.stg_economic_indicators .. [[31mERROR[0m in 2.47s]
+[0m15:24:53.521739 [debug] [Thread-2 (]: Finished running node model.finance_dbt.stg_economic_indicators
+[0m15:24:53.524650 [debug] [Thread-2 (]: Began running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:24:53.512631 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:24:53.516421 [info ] [Thread-4 (]: 23 of 42 SKIP test not_null_dim_merchants_merchant_id .......................... [[33mSKIP[0m]
+[0m15:24:53.508918 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_location_country.a3161a472e' to be skipped because of status 'skipped'. 
+[0m15:24:53.535615 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_economic_indicators' to be skipped because of status 'error'.  Reason: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql.
+[0m15:24:53.514439 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:24:53.530998 [info ] [Thread-1 (]: 24 of 42 SKIP test not_null_dim_users_user_id .................................. [[33mSKIP[0m]
+[0m15:24:53.533249 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:24:53.526425 [info ] [Thread-2 (]: 26 of 42 SKIP test unique_dim_users_user_id .................................... [[33mSKIP[0m]
+[0m15:24:53.553457 [debug] [Thread-2 (]: Finished running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:24:53.538113 [info ] [Thread-3 (]: 25 of 42 SKIP test unique_dim_merchants_merchant_id ............................ [[33mSKIP[0m]
+[0m15:24:53.548195 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:24:53.551731 [debug] [Thread-4 (]: Began running node model.finance_dbt.fct_economic_indicators
+[0m15:24:53.561611 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6' to be skipped because of status 'skipped'. 
+[0m15:24:53.556146 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:24:53.566456 [info ] [Thread-4 (]: 27 of 42 SKIP relation dbt_dev_analytics.fct_economic_indicators ............... [[33mSKIP[0m]
+[0m15:24:53.576023 [debug] [Thread-4 (]: Finished running node model.finance_dbt.fct_economic_indicators
+[0m15:24:53.573666 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9' to be skipped because of status 'skipped'. 
+[0m15:24:53.588628 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_users_user_id.e754bb5812' to be skipped because of status 'skipped'. 
+[0m15:24:53.596878 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97' to be skipped because of status 'skipped'. 
+[0m15:24:53.599689 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_economic_indicators' to be skipped because of status 'skipped'. 
+[0m15:24:53.606226 [debug] [Thread-2 (]: Began running node model.finance_dbt.fct_transactions
+[0m15:24:53.616222 [info ] [Thread-2 (]: 28 of 42 SKIP relation dbt_dev_analytics.fct_transactions ...................... [[33mSKIP[0m]
+[0m15:24:53.623448 [debug] [Thread-2 (]: Finished running node model.finance_dbt.fct_transactions
+[0m15:24:53.632427 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_transactions' to be skipped because of status 'skipped'. 
+[0m15:24:53.650601 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:24:53.653788 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:24:53.643295 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:24:53.675942 [info ] [Thread-3 (]: 29 of 42 SKIP test not_null_fct_transactions_amount ............................ [[33mSKIP[0m]
+[0m15:24:53.680254 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:24:53.663270 [debug] [Thread-2 (]: Began running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:24:53.667955 [info ] [Thread-1 (]: 31 of 42 SKIP test not_null_fct_transactions_date_key .......................... [[33mSKIP[0m]
+[0m15:24:53.656955 [info ] [Thread-4 (]: 30 of 42 SKIP test not_null_fct_transactions_currency .......................... [[33mSKIP[0m]
+[0m15:24:53.689914 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_amount.1d3624d981' to be skipped because of status 'skipped'. 
+[0m15:24:53.682907 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:24:53.704941 [info ] [Thread-3 (]: 33 of 42 SKIP test not_null_fct_transactions_merchant_key ...................... [[33mSKIP[0m]
+[0m15:24:53.693506 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:24:53.696256 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:24:53.688353 [info ] [Thread-2 (]: 32 of 42 SKIP test not_null_fct_transactions_location_key ...................... [[33mSKIP[0m]
+[0m15:24:53.724567 [debug] [Thread-2 (]: Finished running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:24:53.711127 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:24:53.716259 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_date_key.9128617606' to be skipped because of status 'skipped'. 
+[0m15:24:53.719597 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:24:53.707304 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:24:53.765528 [debug] [Thread-3 (]: Began running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:24:53.728213 [debug] [Thread-2 (]: Began running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:24:53.747070 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_currency.b848da04ca' to be skipped because of status 'skipped'. 
+[0m15:24:53.774421 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596' to be skipped because of status 'skipped'. 
+[0m15:24:53.780800 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e' to be skipped because of status 'skipped'. 
+[0m15:24:53.734307 [info ] [Thread-1 (]: 34 of 42 SKIP test not_null_fct_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:24:53.768611 [info ] [Thread-3 (]: 37 of 42 SKIP test relationships_fct_transactions_location_key__country__ref_dim_location_  [[33mSKIP[0m]
+[0m15:24:53.787357 [debug] [Thread-3 (]: Finished running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:24:53.789952 [debug] [Thread-3 (]: Began running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:24:53.753119 [info ] [Thread-4 (]: 35 of 42 SKIP test not_null_fct_transactions_user_key .......................... [[33mSKIP[0m]
+[0m15:24:53.771713 [info ] [Thread-2 (]: 36 of 42 SKIP test relationships_fct_transactions_date_key__date_id__ref_dim_date_  [[33mSKIP[0m]
+[0m15:24:53.783165 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:24:53.815144 [debug] [Thread-1 (]: Began running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:24:53.792324 [info ] [Thread-3 (]: 38 of 42 SKIP test relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_  [[33mSKIP[0m]
+[0m15:24:53.798185 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:24:53.807748 [debug] [Thread-2 (]: Finished running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:24:53.794288 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8' to be skipped because of status 'skipped'. 
+[0m15:24:53.835547 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa' to be skipped because of status 'skipped'. 
+[0m15:24:53.817254 [info ] [Thread-1 (]: 39 of 42 SKIP test relationships_fct_transactions_user_key__user_id__ref_dim_users_  [[33mSKIP[0m]
+[0m15:24:53.828799 [debug] [Thread-4 (]: Began running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:24:53.824891 [debug] [Thread-3 (]: Finished running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:24:53.845500 [info ] [Thread-4 (]: 40 of 42 SKIP test unique_fct_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:24:53.837471 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db' to be skipped because of status 'skipped'. 
+[0m15:24:53.843230 [debug] [Thread-1 (]: Finished running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:24:53.851096 [debug] [Thread-4 (]: Finished running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:24:53.853323 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5' to be skipped because of status 'skipped'. 
+[0m15:24:53.857559 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df' to be skipped because of status 'skipped'. 
+[0m15:24:53.859193 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed' to be skipped because of status 'skipped'. 
+[0m15:24:53.864510 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53' to be skipped because of status 'skipped'. 
+[0m15:24:53.869677 [debug] [Thread-2 (]: Began running node model.finance_dbt.fraud_analysis_view
+[0m15:24:53.871708 [info ] [Thread-2 (]: 41 of 42 SKIP relation dbt_dev_analytics.fraud_analysis_view ................... [[33mSKIP[0m]
+[0m15:24:53.879101 [debug] [Thread-2 (]: Finished running node model.finance_dbt.fraud_analysis_view
+[0m15:24:53.886336 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fraud_analysis_view' to be skipped because of status 'skipped'. 
+[0m15:24:53.891386 [debug] [Thread-1 (]: Began running node model.finance_dbt.ml_features_view
+[0m15:24:53.893140 [info ] [Thread-1 (]: 42 of 42 SKIP relation dbt_dev_analytics.ml_features_view ...................... [[33mSKIP[0m]
+[0m15:24:53.899769 [debug] [Thread-1 (]: Finished running node model.finance_dbt.ml_features_view
+[0m15:24:53.904099 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.ml_features_view' to be skipped because of status 'skipped'. 
+[0m15:24:53.916231 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:24:54.201047 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:24:54.203125 [debug] [MainThread]: Connection 'model.finance_dbt.dim_date' was properly closed.
+[0m15:24:54.204698 [debug] [MainThread]: Connection 'model.finance_dbt.stg_economic_indicators' was properly closed.
+[0m15:24:54.206326 [debug] [MainThread]: Connection 'model.finance_dbt.stg_transactions' was properly closed.
+[0m15:24:54.208361 [info ] [MainThread]: 
+[0m15:24:54.210099 [info ] [MainThread]: Finished running 6 table models, 32 data tests, 4 view models in 0 hours 0 minutes and 7.67 seconds (7.67s).
+[0m15:24:54.217113 [debug] [MainThread]: Command end result
+[0m15:24:54.365920 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:24:54.386935 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:24:54.424856 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/run_results.json
+[0m15:24:54.428201 [info ] [MainThread]: 
+[0m15:24:54.430832 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:24:54.432372 [info ] [MainThread]: 
+[0m15:24:54.434875 [error] [MainThread]: [31mFailure in model dim_date (models/marts/finance/dim_date.sql)[0m
+[0m15:24:54.437157 [error] [MainThread]:   Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [17:5]
+[0m15:24:54.442380 [info ] [MainThread]: 
+[0m15:24:54.447129 [error] [MainThread]: [31mFailure in model stg_transactions (models/staging/stg_transactions.sql)[0m
+[0m15:24:54.451351 [error] [MainThread]:   Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:24:54.453055 [info ] [MainThread]: 
+[0m15:24:54.460663 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_transactions.sql
+[0m15:24:54.464602 [info ] [MainThread]: 
+[0m15:24:54.466251 [error] [MainThread]: [31mFailure in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)[0m
+[0m15:24:54.473731 [error] [MainThread]:   Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:24:54.475369 [info ] [MainThread]: 
+[0m15:24:54.480285 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:24:54.481634 [info ] [MainThread]: 
+[0m15:24:54.486832 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=39 NO-OP=0 TOTAL=42
+[0m15:24:54.495380 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 23.482048, "process_in_blocks": "22128", "process_kernel_time": 3.897407, "process_mem_max_rss": "369152", "process_out_blocks": "4600", "process_user_time": 20.64167}
+[0m15:24:54.497769 [debug] [MainThread]: Command `dbt build` failed at 15:24:54.497405 after 23.49 seconds
+[0m15:24:54.504018 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c810385120>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c80eed8550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x78c810250e50>]}
+[0m15:24:54.508486 [debug] [MainThread]: Flushing usage events
+[0m15:24:55.337969 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:25:39.769599 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de33e5d0c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de32837c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de32837df0>]}
+
+
+============================== 15:25:39.785799 | f1f97e9c-0ccb-428b-a281-05c91cd0a058 ==============================
+[0m15:25:39.785799 [info ] [MainThread]: Running with dbt=1.10.3
+[0m15:25:39.789730 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt/logs', 'debug': 'False', 'profiles_dir': '/home/mohamed-client/Documents/data-engineering/f/DWH/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'invocation_command': 'dbt build', 'send_anonymous_usage_stats': 'True'}
+[0m15:25:49.450939 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de33373580>]}
+[0m15:25:49.805568 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de328d1960>]}
+[0m15:25:49.808559 [info ] [MainThread]: Registered adapter: bigquery=1.9.2
+[0m15:25:50.694233 [debug] [MainThread]: checksum: 1bfacb87e6914c9942cfa2c4badfc1df19d859fe8ec086286ef238a7d920f97b, vars: {}, profile: , target: , version: 1.10.3
+[0m15:25:51.547847 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 2 files changed.
+[0m15:25:51.551036 [debug] [MainThread]: Partial parsing: updated file: finance_dbt://models/marts/finance/dim_date.sql
+[0m15:25:51.552909 [debug] [MainThread]: Partial parsing: updated file: finance_dbt://models/staging/stg_transactions.sql
+[0m15:25:54.226812 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.finance_dbt.relationships_stg_transactions_user_id__user_id__ref_stg_users_.7fcea8eb2e' (models/staging/_staging_schema.yml) depends on a node named 'stg_users' in package '' which was not found
+[0m15:25:54.457384 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.finance_dbt
+[0m15:25:54.509411 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de11bdddb0>]}
+[0m15:25:55.008022 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:25:55.023615 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:25:55.208270 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de11bcc7c0>]}
+[0m15:25:55.213139 [info ] [MainThread]: Found 10 models, 32 data tests, 2 sources, 605 macros
+[0m15:25:55.242506 [info ] [MainThread]: 
+[0m15:25:55.247775 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:25:55.252589 [info ] [MainThread]: 
+[0m15:25:55.254766 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m15:25:55.284298 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:25:55.286098 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:25:55.292228 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_sunlit-pixel-456910-j0'
+[0m15:25:55.298800 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:25:57.298553 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now list_sunlit-pixel-456910-j0_dbt_dev_staging)
+[0m15:25:57.301383 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0, now list_sunlit-pixel-456910-j0_dbt_dev_analytics)
+[0m15:25:57.303208 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:25:57.305918 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:25:58.884813 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de3340ded0>]}
+[0m15:25:58.892535 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:25:59.376530 [debug] [Thread-1 (]: Began running node model.finance_dbt.dim_date
+[0m15:25:59.390525 [debug] [Thread-2 (]: Began running node model.finance_dbt.stg_economic_indicators
+[0m15:25:59.381539 [info ] [Thread-1 (]: 1 of 42 START sql table model dbt_dev_analytics.dim_date ....................... [RUN]
+[0m15:25:59.407666 [info ] [Thread-2 (]: 2 of 42 START sql view model dbt_dev_staging.stg_economic_indicators ........... [RUN]
+[0m15:25:59.418699 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_analytics, now model.finance_dbt.dim_date)
+[0m15:25:59.440501 [debug] [Thread-1 (]: Began compiling node model.finance_dbt.dim_date
+[0m15:25:59.427195 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_sunlit-pixel-456910-j0_dbt_dev_staging, now model.finance_dbt.stg_economic_indicators)
+[0m15:25:59.424715 [debug] [Thread-3 (]: Began running node model.finance_dbt.stg_transactions
+[0m15:25:59.450192 [debug] [Thread-2 (]: Began compiling node model.finance_dbt.stg_economic_indicators
+[0m15:25:59.457865 [info ] [Thread-3 (]: 3 of 42 START sql view model dbt_dev_staging.stg_transactions .................. [RUN]
+[0m15:25:59.482235 [debug] [Thread-3 (]: Acquiring new bigquery connection 'model.finance_dbt.stg_transactions'
+[0m15:25:59.487146 [debug] [Thread-3 (]: Began compiling node model.finance_dbt.stg_transactions
+[0m15:25:59.583822 [debug] [Thread-3 (]: Writing injected SQL for node "model.finance_dbt.stg_transactions"
+[0m15:25:59.590772 [debug] [Thread-2 (]: Writing injected SQL for node "model.finance_dbt.stg_economic_indicators"
+[0m15:25:59.634794 [debug] [Thread-1 (]: On model.finance_dbt.dim_date: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.dim_date"} */
+
+
+        select 
+
+    datetime_diff(
+        cast(2026-01-01 as datetime),
+        cast(2020-01-01 as datetime),
+        
+    )
+
+  
+[0m15:25:59.621927 [debug] [Thread-3 (]: Began executing node model.finance_dbt.stg_transactions
+[0m15:25:59.640923 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:25:59.661999 [debug] [Thread-2 (]: Began executing node model.finance_dbt.stg_economic_indicators
+[0m15:25:59.845303 [debug] [Thread-3 (]: Writing runtime sql for node "model.finance_dbt.stg_transactions"
+[0m15:25:59.847477 [debug] [Thread-2 (]: Writing runtime sql for node "model.finance_dbt.stg_economic_indicators"
+[0m15:25:59.866235 [debug] [Thread-3 (]: On model.finance_dbt.stg_transactions: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_transactions"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_transactions`
+  OPTIONS()
+  as with source as (
+    select
+        cast(json_extract_scalar(record_content, '$.transaction_id') as string) as transaction_id,
+        cast(json_extract_scalar(record_content, '$.user_id') as int64) as user_id,
+        cast(json_extract_scalar(record_content, '$.amount') as numeric) as amount,
+        cast(json_extract_scalar(record_content, '$.currency') as string) as currency,
+        cast(json_extract_scalar(record_content, '$.merchant_id') as string) as merchant_id,
+        cast(json_extract_scalar(record_content, '$.merchant_name') as string) as merchant_name,
+        cast(json_extract_scalar(record_content, '$.merchant_category') as string) as merchant_category,
+        cast(json_extract_scalar(record_content, '$.card_type') as string) as card_type,
+        cast(json_extract_scalar(record_content, '$.timestamp') as timestamp) as transaction_timestamp_utc,
+        cast(json_extract_scalar(record_content, '$.location_country') as string) as location_country,
+        cast(json_extract_scalar(record_content, '$.location_city') as string) as location_city,
+        cast(json_extract_scalar(record_content, '$.latitude') as float64) as latitude,
+        cast(json_extract_scalar(record_content, '$.longitude') as float64) as longitude,
+        cast(json_extract_scalar(record_metadata, '$.CreateTime') as timestamp) as kafka_load_timestamp
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_transactions`
+),
+renamed as (
+    select
+        transaction_id,
+        user_id,
+        amount,
+        currency,
+        merchant_id,
+        merchant_name,
+        merchant_category,
+        card_type,
+        transaction_timestamp_utc as timestamp,
+        location_country,
+        location_city,
+        latitude,
+        longitude,
+        datetime(transaction_timestamp_utc, 'Africa/Cairo') as transaction_timestamp_local,
+        date(transaction_timestamp_utc) as transaction_date_utc
+    from source
+    where 
+        transaction_id is not null
+        and user_id between 1 and 10000
+        and amount >= 0.01 and amount <= 10000
+        and regexp_contains(currency, r'^[A-Z]{3}
+        and latitude between -90 and 90
+        and longitude between -180 and 180
+)
+
+select * from renamed)
+        and card_type in ('Visa', 'MasterCard', 'Amex', 'Discover', 'Other')
+        and regexp_contains(location_country, r'^[A-Z]{2}
+        and latitude between -90 and 90
+        and longitude between -180 and 180
+)
+
+select * from renamed)
+        and latitude between -90 and 90
+        and longitude between -180 and 180
+)
+
+select * from renamed;
+
+
+[0m15:25:59.871679 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m15:25:59.885796 [debug] [Thread-2 (]: On model.finance_dbt.stg_economic_indicators: /* {"app": "dbt", "dbt_version": "1.10.3", "profile_name": "finance_dbt_profile", "target_name": "dev", "node_id": "model.finance_dbt.stg_economic_indicators"} */
+
+
+  create or replace view `sunlit-pixel-456910-j0`.`dbt_dev_staging`.`stg_economic_indicators`
+  OPTIONS()
+  as -- models/staging/stg_economic_indicators.sql
+
+with source as (
+    select
+        cast(json_extract_scalar(record_content, '$.indicator_id') as string) as indicator_id,
+        cast(json_extract_scalar(record_content, '$.indicator_name') as string) as indicator_name,
+        cast(json_extract_scalar(record_content, '$.value') as float64) as value,
+        cast(json_extract_scalar(record_content, '$.date') as date) as date,
+        cast(json_extract_scalar(record_content, '$.country') as string) as country
+    from `sunlit-pixel-456910-j0`.`raw`.`raw_economic_indicators`
+)
+
+select
+    indicator_id,
+    indicator_name,
+    value,
+    date,
+    country
+from source;
+
+
+[0m15:25:59.887810 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m15:26:01.233635 [debug] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:981b5bdb-aef0-452c-9e71-74dda739667e&page=queryresults
+[0m15:26:01.235741 [error] [Thread-1 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:981b5bdb-aef0-452c-9e71-74dda739667e&page=queryresults
+[0m15:26:01.282733 [debug] [Thread-1 (]: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [10:5]
+[0m15:26:01.294400 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de3414d180>]}
+[0m15:26:01.296954 [error] [Thread-1 (]: 1 of 42 ERROR creating sql table model dbt_dev_analytics.dim_date .............. [[31mERROR[0m in 1.87s]
+[0m15:26:01.301715 [debug] [Thread-1 (]: Finished running node model.finance_dbt.dim_date
+[0m15:26:01.310148 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_date' to be skipped because of status 'error'.  Reason: Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [10:5].
+[0m15:26:01.318424 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:26:01.323985 [debug] [Thread-1 (]: Began running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:26:01.320338 [info ] [Thread-4 (]: 4 of 42 SKIP test not_null_dim_date_date_id .................................... [[33mSKIP[0m]
+[0m15:26:01.330415 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_date_date_id.3077875806
+[0m15:26:01.328202 [info ] [Thread-1 (]: 5 of 42 SKIP test unique_dim_date_date_id ...................................... [[33mSKIP[0m]
+[0m15:26:01.332786 [debug] [Thread-1 (]: Finished running node test.finance_dbt.unique_dim_date_date_id.7286dcb90d
+[0m15:26:01.334367 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_date_date_id.3077875806' to be skipped because of status 'skipped'. 
+[0m15:26:01.339827 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_date_date_id.7286dcb90d' to be skipped because of status 'skipped'. 
+[0m15:26:01.616648 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:9dc635c2-41f6-40f6-8680-8c006571ae47&page=queryresults
+[0m15:26:01.620018 [error] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:9dc635c2-41f6-40f6-8680-8c006571ae47&page=queryresults
+[0m15:26:01.630786 [debug] [Thread-3 (]: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:26:01.642077 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de12787760>]}
+[0m15:26:01.646975 [error] [Thread-3 (]: 3 of 42 ERROR creating sql view model dbt_dev_staging.stg_transactions ......... [[31mERROR[0m in 2.16s]
+[0m15:26:01.653650 [debug] [Thread-3 (]: Finished running node model.finance_dbt.stg_transactions
+[0m15:26:01.657553 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_transactions' to be skipped because of status 'error'.  Reason: Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql.
+[0m15:26:01.668889 [debug] [Thread-4 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:26:01.670760 [info ] [Thread-4 (]: 6 of 42 SKIP test accepted_values_stg_transactions_currency__USD__EUR__GBP ..... [[33mSKIP[0m]
+[0m15:26:01.673562 [debug] [Thread-4 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef
+[0m15:26:01.676036 [debug] [Thread-4 (]: Began running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:26:01.679889 [debug] [Thread-1 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:26:01.696689 [info ] [Thread-1 (]: 8 of 42 SKIP test dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2  [[33mSKIP[0m]
+[0m15:26:01.682406 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_currency__USD__EUR__GBP.b71d9e46ef' to be skipped because of status 'skipped'. 
+[0m15:26:01.692447 [info ] [Thread-4 (]: 7 of 42 SKIP test accepted_values_stg_transactions_is_fraud__True__False ....... [[33mSKIP[0m]
+[0m15:26:01.689314 [debug] [Thread-3 (]: Began running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:26:01.701314 [debug] [Thread-1 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97
+[0m15:26:01.709906 [debug] [Thread-4 (]: Finished running node test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031
+[0m15:26:01.713372 [info ] [Thread-3 (]: 9 of 42 SKIP test dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False  [[33mSKIP[0m]
+[0m15:26:01.724826 [debug] [Thread-3 (]: Finished running node test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc
+[0m15:26:01.720976 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:26:01.722701 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_value_lengths_to_equal_stg_transactions_location_code__2.ba2c327e97' to be skipped because of status 'skipped'. 
+[0m15:26:01.719061 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:26:01.732217 [info ] [Thread-4 (]: 11 of 42 SKIP test not_null_stg_transactions_currency .......................... [[33mSKIP[0m]
+[0m15:26:01.727042 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:26:01.745448 [info ] [Thread-3 (]: 12 of 42 SKIP test not_null_stg_transactions_is_fraud .......................... [[33mSKIP[0m]
+[0m15:26:01.741713 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d
+[0m15:26:01.737251 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.accepted_values_stg_transactions_is_fraud__True__False.81249a8031' to be skipped because of status 'skipped'. 
+[0m15:26:01.739157 [info ] [Thread-1 (]: 10 of 42 SKIP test not_null_stg_transactions_amount ............................ [[33mSKIP[0m]
+[0m15:26:01.759564 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_amount.3629b5421e
+[0m15:26:01.752989 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:26:01.757517 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.dbt_expectations_expect_column_values_to_be_between_stg_transactions_amount__0__False.30c08d66bc' to be skipped because of status 'skipped'. 
+[0m15:26:01.750119 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395
+[0m15:26:01.767765 [info ] [Thread-4 (]: 13 of 42 SKIP test not_null_stg_transactions_location_code ..................... [[33mSKIP[0m]
+[0m15:26:01.761444 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:26:01.786847 [info ] [Thread-1 (]: 14 of 42 SKIP test not_null_stg_transactions_merchant .......................... [[33mSKIP[0m]
+[0m15:26:01.778787 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_currency.b117dfaf5d' to be skipped because of status 'skipped'. 
+[0m15:26:01.781070 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:26:01.784511 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b
+[0m15:26:01.791238 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_amount.3629b5421e' to be skipped because of status 'skipped'. 
+[0m15:26:01.794198 [info ] [Thread-3 (]: 15 of 42 SKIP test not_null_stg_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:26:01.789207 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e
+[0m15:26:01.799868 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:26:01.801770 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_is_fraud.c832a79395' to be skipped because of status 'skipped'. 
+[0m15:26:01.803738 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4
+[0m15:26:01.820170 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:26:01.814447 [info ] [Thread-4 (]: 16 of 42 SKIP test not_null_stg_transactions_transaction_timestamp_utc ......... [[33mSKIP[0m]
+[0m15:26:01.816649 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_location_code.3e8fe9ab2b' to be skipped because of status 'skipped'. 
+[0m15:26:01.830807 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_merchant.41f6b62c5e' to be skipped because of status 'skipped'. 
+[0m15:26:01.809561 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:26:01.837803 [info ] [Thread-1 (]: 17 of 42 SKIP test not_null_stg_transactions_user_id ........................... [[33mSKIP[0m]
+[0m15:26:01.828538 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da
+[0m15:26:01.832652 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_id.1d00a8e2e4' to be skipped because of status 'skipped'. 
+[0m15:26:01.824707 [info ] [Thread-3 (]: 18 of 42 SKIP test unique_stg_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:26:01.845485 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_transaction_timestamp_utc.5e1f67c8da' to be skipped because of status 'skipped'. 
+[0m15:26:01.840849 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_stg_transactions_user_id.b541614306
+[0m15:26:01.853017 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_stg_transactions_user_id.b541614306' to be skipped because of status 'skipped'. 
+[0m15:26:01.847157 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396
+[0m15:26:01.857248 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_stg_transactions_transaction_id.ee9a78a396' to be skipped because of status 'skipped'. 
+[0m15:26:01.863343 [debug] [Thread-4 (]: Began running node model.finance_dbt.dim_location
+[0m15:26:01.865403 [debug] [Thread-1 (]: Began running node model.finance_dbt.dim_merchants
+[0m15:26:01.868995 [debug] [Thread-3 (]: Began running node model.finance_dbt.dim_users
+[0m15:26:01.873972 [info ] [Thread-4 (]: 19 of 42 SKIP relation dbt_dev_analytics.dim_location .......................... [[33mSKIP[0m]
+[0m15:26:01.876063 [info ] [Thread-1 (]: 20 of 42 SKIP relation dbt_dev_analytics.dim_merchants ......................... [[33mSKIP[0m]
+[0m15:26:01.879840 [info ] [Thread-3 (]: 21 of 42 SKIP relation dbt_dev_analytics.dim_users ............................. [[33mSKIP[0m]
+[0m15:26:01.884586 [debug] [Thread-4 (]: Finished running node model.finance_dbt.dim_location
+[0m15:26:01.887194 [debug] [Thread-1 (]: Finished running node model.finance_dbt.dim_merchants
+[0m15:26:01.889283 [debug] [Thread-3 (]: Finished running node model.finance_dbt.dim_users
+[0m15:26:01.891851 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_location' to be skipped because of status 'skipped'. 
+[0m15:26:01.898091 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_merchants' to be skipped because of status 'skipped'. 
+[0m15:26:01.901953 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:26:01.915484 [info ] [Thread-4 (]: 22 of 42 SKIP test not_null_dim_location_country ............................... [[33mSKIP[0m]
+[0m15:26:01.906276 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:26:01.910163 [debug] [Thread-1 (]: Began running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:26:01.903955 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.dim_users' to be skipped because of status 'skipped'. 
+[0m15:26:01.923349 [info ] [Thread-3 (]: 23 of 42 SKIP test not_null_dim_merchants_merchant_id .......................... [[33mSKIP[0m]
+[0m15:26:01.919281 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_location_country.a3161a472e
+[0m15:26:01.929145 [info ] [Thread-1 (]: 24 of 42 SKIP test unique_dim_merchants_merchant_id ............................ [[33mSKIP[0m]
+[0m15:26:01.933160 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6
+[0m15:26:01.935641 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:26:01.937797 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_location_country.a3161a472e' to be skipped because of status 'skipped'. 
+[0m15:26:01.948297 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_merchants_merchant_id.8733589ad6' to be skipped because of status 'skipped'. 
+[0m15:26:01.943209 [debug] [Thread-3 (]: Began running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:26:01.940673 [debug] [Thread-1 (]: Finished running node test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97
+[0m15:26:01.946433 [info ] [Thread-4 (]: 25 of 42 SKIP test not_null_dim_users_user_id .................................. [[33mSKIP[0m]
+[0m15:26:01.956238 [info ] [Thread-3 (]: 26 of 42 SKIP test unique_dim_users_user_id .................................... [[33mSKIP[0m]
+[0m15:26:01.958679 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_merchants_merchant_id.d36224ab97' to be skipped because of status 'skipped'. 
+[0m15:26:01.962310 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_dim_users_user_id.e754bb5812
+[0m15:26:01.967005 [debug] [Thread-3 (]: Finished running node test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9
+[0m15:26:01.969540 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_dim_users_user_id.e754bb5812' to be skipped because of status 'skipped'. 
+[0m15:26:01.972345 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_dim_users_user_id.bcdc17b9f9' to be skipped because of status 'skipped'. 
+[0m15:26:01.975725 [debug] [Thread-1 (]: Began running node model.finance_dbt.fct_transactions
+[0m15:26:01.978148 [info ] [Thread-1 (]: 27 of 42 SKIP relation dbt_dev_analytics.fct_transactions ...................... [[33mSKIP[0m]
+[0m15:26:01.982581 [debug] [Thread-1 (]: Finished running node model.finance_dbt.fct_transactions
+[0m15:26:01.986833 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_transactions' to be skipped because of status 'skipped'. 
+[0m15:26:01.991578 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:26:01.994255 [info ] [Thread-3 (]: 28 of 42 SKIP test not_null_fct_transactions_amount ............................ [[33mSKIP[0m]
+[0m15:26:01.996432 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:26:01.999097 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:26:02.007051 [info ] [Thread-1 (]: 30 of 42 SKIP test not_null_fct_transactions_date_key .......................... [[33mSKIP[0m]
+[0m15:26:02.003540 [info ] [Thread-4 (]: 29 of 42 SKIP test not_null_fct_transactions_currency .......................... [[33mSKIP[0m]
+[0m15:26:02.001263 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_amount.1d3624d981
+[0m15:26:02.009315 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_fct_transactions_date_key.9128617606
+[0m15:26:02.011731 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_currency.b848da04ca
+[0m15:26:02.019987 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:26:02.022990 [info ] [Thread-4 (]: 33 of 42 SKIP test not_null_fct_transactions_transaction_id .................... [[33mSKIP[0m]
+[0m15:26:02.016351 [debug] [Thread-1 (]: Began running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:26:02.028073 [info ] [Thread-1 (]: 32 of 42 SKIP test not_null_fct_transactions_merchant_key ...................... [[33mSKIP[0m]
+[0m15:26:02.024779 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa
+[0m15:26:02.026210 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_amount.1d3624d981' to be skipped because of status 'skipped'. 
+[0m15:26:02.014154 [debug] [Thread-3 (]: Began running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:26:02.040675 [info ] [Thread-3 (]: 31 of 42 SKIP test not_null_fct_transactions_location_key ...................... [[33mSKIP[0m]
+[0m15:26:02.036730 [debug] [Thread-4 (]: Began running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:26:02.038941 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_date_key.9128617606' to be skipped because of status 'skipped'. 
+[0m15:26:02.033973 [debug] [Thread-1 (]: Finished running node test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e
+[0m15:26:02.053550 [debug] [Thread-1 (]: Began running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:26:02.047688 [info ] [Thread-4 (]: 34 of 42 SKIP test not_null_fct_transactions_user_key .......................... [[33mSKIP[0m]
+[0m15:26:02.051160 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_currency.b848da04ca' to be skipped because of status 'skipped'. 
+[0m15:26:02.045579 [debug] [Thread-3 (]: Finished running node test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596
+[0m15:26:02.063117 [debug] [Thread-3 (]: Began running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:26:02.058120 [debug] [Thread-4 (]: Finished running node test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db
+[0m15:26:02.060435 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_transaction_id.2c6b5372aa' to be skipped because of status 'skipped'. 
+[0m15:26:02.055930 [info ] [Thread-1 (]: 35 of 42 SKIP test relationships_fct_transactions_date_key__date_id__ref_dim_date_  [[33mSKIP[0m]
+[0m15:26:02.074032 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_merchant_key.6ceeb8ff0e' to be skipped because of status 'skipped'. 
+[0m15:26:02.065952 [info ] [Thread-3 (]: 36 of 42 SKIP test relationships_fct_transactions_location_key__country__ref_dim_location_  [[33mSKIP[0m]
+[0m15:26:02.081293 [debug] [Thread-3 (]: Finished running node test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8
+[0m15:26:02.086602 [debug] [Thread-3 (]: Began running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:26:02.070346 [debug] [Thread-4 (]: Began running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:26:02.076056 [debug] [Thread-1 (]: Finished running node test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5
+[0m15:26:02.079015 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_location_key.5bf3988596' to be skipped because of status 'skipped'. 
+[0m15:26:02.091616 [info ] [Thread-3 (]: 38 of 42 SKIP test relationships_fct_transactions_user_key__user_id__ref_dim_users_  [[33mSKIP[0m]
+[0m15:26:02.093877 [info ] [Thread-4 (]: 37 of 42 SKIP test relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_  [[33mSKIP[0m]
+[0m15:26:02.098750 [debug] [Thread-1 (]: Began running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:26:02.101770 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:2501e14a-582d-4e2c-b516-0bd3eee29f7a&page=queryresults
+[0m15:26:02.104871 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.not_null_fct_transactions_user_key.d01a8598db' to be skipped because of status 'skipped'. 
+[0m15:26:02.108181 [debug] [Thread-3 (]: Finished running node test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed
+[0m15:26:02.115071 [debug] [Thread-4 (]: Finished running node test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df
+[0m15:26:02.122711 [info ] [Thread-1 (]: 39 of 42 SKIP test unique_fct_transactions_transaction_id ...................... [[33mSKIP[0m]
+[0m15:26:02.125686 [error] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=sunlit-pixel-456910-j0&j=bq:US:2501e14a-582d-4e2c-b516-0bd3eee29f7a&page=queryresults
+[0m15:26:02.129264 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_location_key__country__ref_dim_location_.95c29d60a8' to be skipped because of status 'skipped'. 
+[0m15:26:02.132802 [debug] [Thread-1 (]: Finished running node test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53
+[0m15:26:02.138885 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_date_key__date_id__ref_dim_date_.b697288bd5' to be skipped because of status 'skipped'. 
+[0m15:26:02.146473 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_user_key__user_id__ref_dim_users_.73f5aa94ed' to be skipped because of status 'skipped'. 
+[0m15:26:02.148783 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.relationships_fct_transactions_merchant_key__merchant_id__ref_dim_merchants_.b09a7668df' to be skipped because of status 'skipped'. 
+[0m15:26:02.151808 [debug] [Thread-2 (]: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:26:02.154194 [debug] [Thread-7 (]: Marking all children of 'test.finance_dbt.unique_fct_transactions_transaction_id.c963611c53' to be skipped because of status 'skipped'. 
+[0m15:26:02.156926 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f1f97e9c-0ccb-428b-a281-05c91cd0a058', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de11bc9900>]}
+[0m15:26:02.160082 [error] [Thread-2 (]: 2 of 42 ERROR creating sql view model dbt_dev_staging.stg_economic_indicators .. [[31mERROR[0m in 2.73s]
+[0m15:26:02.162490 [debug] [Thread-2 (]: Finished running node model.finance_dbt.stg_economic_indicators
+[0m15:26:02.165357 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.stg_economic_indicators' to be skipped because of status 'error'.  Reason: Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql.
+[0m15:26:02.170584 [debug] [Thread-3 (]: Began running node model.finance_dbt.fct_economic_indicators
+[0m15:26:02.174197 [info ] [Thread-3 (]: 40 of 42 SKIP relation dbt_dev_analytics.fct_economic_indicators ............... [[33mSKIP[0m]
+[0m15:26:02.179680 [debug] [Thread-3 (]: Finished running node model.finance_dbt.fct_economic_indicators
+[0m15:26:02.183455 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fct_economic_indicators' to be skipped because of status 'skipped'. 
+[0m15:26:02.186691 [debug] [Thread-1 (]: Began running node model.finance_dbt.fraud_analysis_view
+[0m15:26:02.188625 [info ] [Thread-1 (]: 41 of 42 SKIP relation dbt_dev_analytics.fraud_analysis_view ................... [[33mSKIP[0m]
+[0m15:26:02.195417 [debug] [Thread-1 (]: Finished running node model.finance_dbt.fraud_analysis_view
+[0m15:26:02.197390 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.fraud_analysis_view' to be skipped because of status 'skipped'. 
+[0m15:26:02.200683 [debug] [Thread-4 (]: Began running node model.finance_dbt.ml_features_view
+[0m15:26:02.204949 [info ] [Thread-4 (]: 42 of 42 SKIP relation dbt_dev_analytics.ml_features_view ...................... [[33mSKIP[0m]
+[0m15:26:02.207417 [debug] [Thread-4 (]: Finished running node model.finance_dbt.ml_features_view
+[0m15:26:02.209464 [debug] [Thread-7 (]: Marking all children of 'model.finance_dbt.ml_features_view' to be skipped because of status 'skipped'. 
+[0m15:26:02.215749 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:26:02.456988 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:26:02.459764 [debug] [MainThread]: Connection 'model.finance_dbt.dim_date' was properly closed.
+[0m15:26:02.462079 [debug] [MainThread]: Connection 'model.finance_dbt.stg_economic_indicators' was properly closed.
+[0m15:26:02.464551 [debug] [MainThread]: Connection 'model.finance_dbt.stg_transactions' was properly closed.
+[0m15:26:02.466641 [info ] [MainThread]: 
+[0m15:26:02.468320 [info ] [MainThread]: Finished running 6 table models, 32 data tests, 4 view models in 0 hours 0 minutes and 7.21 seconds (7.21s).
+[0m15:26:02.479905 [debug] [MainThread]: Command end result
+[0m15:26:02.671282 [debug] [MainThread]: Wrote artifact WritableManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/manifest.json
+[0m15:26:02.679772 [debug] [MainThread]: Wrote artifact SemanticManifest to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/semantic_manifest.json
+[0m15:26:02.720548 [debug] [MainThread]: Wrote artifact RunExecutionResult to /home/mohamed-client/Documents/data-engineering/f/DWH/dbt/target/run_results.json
+[0m15:26:02.722741 [info ] [MainThread]: 
+[0m15:26:02.725062 [info ] [MainThread]: [31mCompleted with 3 errors, 0 partial successes, and 0 warnings:[0m
+[0m15:26:02.729021 [info ] [MainThread]: 
+[0m15:26:02.731167 [error] [MainThread]: [31mFailure in model dim_date (models/marts/finance/dim_date.sql)[0m
+[0m15:26:02.734921 [error] [MainThread]:   Database Error in model dim_date (models/marts/finance/dim_date.sql)
+  Syntax error: Unexpected ")" at [10:5]
+[0m15:26:02.736926 [info ] [MainThread]: 
+[0m15:26:02.744580 [error] [MainThread]: [31mFailure in model stg_transactions (models/staging/stg_transactions.sql)[0m
+[0m15:26:02.747396 [error] [MainThread]:   Database Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Syntax error: Unclosed raw string literal at [46:39]
+  compiled code at target/run/finance_dbt/models/staging/stg_transactions.sql
+[0m15:26:02.749963 [info ] [MainThread]: 
+[0m15:26:02.754104 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_transactions.sql
+[0m15:26:02.759871 [info ] [MainThread]: 
+[0m15:26:02.762106 [error] [MainThread]: [31mFailure in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)[0m
+[0m15:26:02.764164 [error] [MainThread]:   Database Error in model stg_economic_indicators (models/staging/stg_economic_indicators.sql)
+  Not found: Dataset sunlit-pixel-456910-j0:raw was not found in location US
+  compiled code at target/run/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:26:02.766789 [info ] [MainThread]: 
+[0m15:26:02.768468 [info ] [MainThread]:   compiled code at target/compiled/finance_dbt/models/staging/stg_economic_indicators.sql
+[0m15:26:02.771173 [info ] [MainThread]: 
+[0m15:26:02.773507 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=39 NO-OP=0 TOTAL=42
+[0m15:26:02.779617 [debug] [MainThread]: Resource report: {"command_name": "build", "command_success": false, "command_wall_clock_time": 23.362486, "process_in_blocks": "0", "process_kernel_time": 2.894489, "process_mem_max_rss": "368508", "process_out_blocks": "4608", "process_user_time": 19.179922}
+[0m15:26:02.782188 [debug] [MainThread]: Command `dbt build` failed at 15:26:02.781768 after 23.37 seconds
+[0m15:26:02.784211 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de33e5d0c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de33372740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x71de33d24280>]}
+[0m15:26:02.786303 [debug] [MainThread]: Flushing usage events
+[0m15:26:03.623042 [debug] [MainThread]: An error was encountered while trying to flush usage events

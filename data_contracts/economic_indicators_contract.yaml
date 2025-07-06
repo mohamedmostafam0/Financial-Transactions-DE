@@ -1,0 +1,37 @@
+name: economic_indicators
+description: Stream of economic indicators from FRED API.
+version: 1.0.0
+
+topic: economic_indicators
+schema_type: AVRO
+schema:
+  type: record
+  name: EconomicIndicator
+  namespace: com.financial.transactions
+  fields:
+    - name: timestamp
+      type: string
+    - name: indicator_id
+      type: string
+    - name: indicator_name
+      type: string
+    - name: value
+      type: double
+    - name: date
+      type: string
+    - name: country
+      type: string
+    - name: frequency
+      type: string
+    - name: source
+      type: string
+
+quality_expectations:
+  - value must be a valid number
+  - country must be a 2-letter ISO code
+  - frequency must be one of 'daily', 'monthly', 'quarterly', 'annually'
+
+delivery:
+  mode: kafka-stream
+  frequency: real-time
+  partition_key: indicator_id

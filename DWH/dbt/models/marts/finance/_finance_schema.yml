@@ -2,67 +2,81 @@ version: 2
 
 models:
   - name: fct_transactions
-    description: "Fact table containing transaction data with standardized fields"
+    description: "Fact table for transactions, with foreign keys to dimension tables."
     columns:
       - name: transaction_id
         description: "Unique identifier for the transaction"
         tests:
           - unique
           - not_null
-      - name: user_id
-        description: "User identifier"
+      - name: date_key
+        description: "Foreign key to the date dimension"
         tests:
           - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_id
+      - name: user_key
+        description: "Foreign key to the user dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_users')
+              field: user_id
+      - name: merchant_key
+        description: "Foreign key to the merchant dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_merchants')
+              field: merchant_id
+      - name: location_key
+        description: "Foreign key to the location dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_location')
+              field: country
       - name: amount
         description: "Transaction amount"
         tests:
           - not_null
-          - greater_than_or_equal_to: 0
-      - name: currency_code
-        description: "Currency code of the transaction"
-        tests:
-          - not_null
-      - name: transaction_timestamp_utc
-        description: "Transaction timestamp in UTC"
+      - name: currency
+        description: "Currency of the transaction"
         tests:
           - not_null
 
-  - name: fraud_analysis_view
-    description: "View for fraud analysis with enriched features"
+  - name: dim_date
+    description: "Date dimension table"
     columns:
-      - name: transaction_id
-        description: "Unique identifier for the transaction"
+      - name: date_id
+        description: "Unique identifier for the date"
         tests:
           - unique
           - not_null
-      - name: is_fraud
-        description: "Flag indicating if transaction is fraud"
-        tests:
-          - not_null
-      - name: transaction_hour
-        description: "Hour of the transaction"
-        tests:
-          - not_null
-          - between:
-              min_value: 0
-              max_value: 23
-      - name: transaction_day_of_week
-        description: "Day of week of the transaction"
-        tests:
-          - not_null
-          - between:
-              min_value: 1
-              max_value: 7
 
-  - name: ml_features_view
-    description: "View for ML features with standardized format"
+  - name: dim_users
+    description: "User dimension table"
     columns:
-      - name: transaction_id
-        description: "Unique identifier for the transaction"
+      - name: user_id
+        description: "Unique identifier for the user"
         tests:
           - unique
           - not_null
-      - name: is_fraud
-        description: "Label indicating if transaction is fraud"
+
+  - name: dim_merchants
+    description: "Merchant dimension table"
+    columns:
+      - name: merchant_id
+        description: "Unique identifier for the merchant"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_location
+    description: "Location dimension table"
+    columns:
+      - name: country
+        description: "Country of the location"
         tests:
           - not_null

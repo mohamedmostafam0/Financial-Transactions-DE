@@ -54,8 +54,6 @@ services:
     networks:
       - de-network
 
-
-
   redis:
     image: redis:7.2-bookworm
     container_name: redis_airflow
@@ -167,48 +165,6 @@ services:
         condition: service_completed_successfully
     networks:
       - de-network
-
-<<<<<<< HEAD
-  producer:
-    build:
-      context: ../
-      # dockerfile: src/producer/Dockerfile
-    container_name: producer
-    env_file:
-      - ../.env
-    environment:
-      KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
-      KAFKA_USERNAME: ${KAFKA_USERNAME}
-      KAFKA_PASSWORD: ${KAFKA_PASSWORD}
-      KAFKA_TRANSACTIONS_TOPIC: ${KAFKA_TRANSACTIONS_TOPIC}
-      KAFKA_USERS_TOPIC: ${KAFKA_USERS_TOPIC}
-      KAFKA_MERCHANTS_TOPIC: ${KAFKA_MERCHANTS_TOPIC}
-    depends_on:
-      - airflow-webserver
-    networks:
-      - de-network
-=======
-  # producer:
-  #   build:
-  #     context: ../
-  #   container_name: producer
-  #   env_file:
-  #     - ../.env
-  #   environment:
-  #     KAFKA_BOOTSTRAP_SERVERS: ${KAFKA_BOOTSTRAP_SERVERS}
-  #     KAFKA_USERNAME: ${KAFKA_USERNAME}
-  #     KAFKA_PASSWORD: ${KAFKA_PASSWORD}
-  #     KAFKA_TRANSACTIONS_TOPIC: ${KAFKA_TRANSACTIONS_TOPIC}
-  #     KAFKA_USERS_TOPIC: ${KAFKA_USERS_TOPIC}
-  #     KAFKA_MERCHANTS_TOPIC: ${KAFKA_MERCHANTS_TOPIC}
-  #   depends_on:
-  #     - airflow-webserver
-  #   networks:
-  #     - de-network
->>>>>>> de7e0610e73551440ec82aeba76fac6a167e8fc6
-
-
-  logs:
 
 networks:
   de-network:
